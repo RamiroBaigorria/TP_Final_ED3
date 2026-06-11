@@ -1,0 +1,26 @@
+16:42:55 **** Build of configuration Debug for project PWM_CAPTURE ****
+make -r -j16 all 
+Building file: ../src/PWM_CAPTURE.c
+Building file: ../src/cr_startup_lpc175x_6x.c
+Building file: ../src/crp.c
+Invoking: MCU C Compiler
+arm-none-eabi-gcc -DDEBUG -D__CODE_RED -DCORE_M3 -D__USE_CMSIS=CMSISv2p00_LPC17xx -D__LPC17XX__ -D__REDLIB__ -I"C:\nxp\CMSISv2p00_LPC17xx\inc" -O0 -fno-common -g3 -gdwarf-4 -Wall -c -fmessage-length=0 -fno-builtin -ffunction-sections -fdata-sections -fmerge-constants -fmacro-prefix-map="../src/"= -mcpu=cortex-m3 -mthumb -fstack-usage -specs=redlib.specs -MMD -MP -MF"src/PWM_CAPTURE.d" -MT"src/PWM_CAPTURE.o" -MT"src/PWM_CAPTURE.d" -o "src/PWM_CAPTURE.o" "../src/PWM_CAPTURE.c"
+Invoking: MCU C Compiler
+arm-none-eabi-gcc -DDEBUG -D__CODE_RED -DCORE_M3 -D__USE_CMSIS=CMSISv2p00_LPC17xx -D__LPC17XX__ -D__REDLIB__ -I"C:\nxp\CMSISv2p00_LPC17xx\inc" -O0 -fno-common -g3 -gdwarf-4 -Wall -c -fmessage-length=0 -fno-builtin -ffunction-sections -fdata-sections -fmerge-constants -fmacro-prefix-map="../src/"= -mcpu=cortex-m3 -mthumb -fstack-usage -specs=redlib.specs -MMD -MP -MF"src/cr_startup_lpc175x_6x.d" -MT"src/cr_startup_lpc175x_6x.o" -MT"src/cr_startup_lpc175x_6x.d" -o "src/cr_startup_lpc175x_6x.o" "../src/cr_startup_lpc175x_6x.c"
+Invoking: MCU C Compiler
+arm-none-eabi-gcc -DDEBUG -D__CODE_RED -DCORE_M3 -D__USE_CMSIS=CMSISv2p00_LPC17xx -D__LPC17XX__ -D__REDLIB__ -I"C:\nxp\CMSISv2p00_LPC17xx\inc" -O0 -fno-common -g3 -gdwarf-4 -Wall -c -fmessage-length=0 -fno-builtin -ffunction-sections -fdata-sections -fmerge-constants -fmacro-prefix-map="../src/"= -mcpu=cortex-m3 -mthumb -fstack-usage -specs=redlib.specs -MMD -MP -MF"src/crp.d" -MT"src/crp.o" -MT"src/crp.d" -o "src/crp.o" "../src/crp.c"
+../src/PWM_CAPTURE.c:13:10: fatal error: lpc17xx_adc.h: No such file or directory
+   13 | #include "lpc17xx_adc.h"
+      |          ^~~~~~~~~~~~~~~
+compilation terminated.
+make[1]: *** [src/subdir.mk:26: src/PWM_CAPTURE.o] Error 1
+make[1]: *** Waiting for unfinished jobs....
+Finished building: ../src/crp.c
+Finished building: ../src/cr_startup_lpc175x_6x.c
+ 
+ 
+make: *** [makefile:35: all] Error 2
+"make -r -j16 all" terminated with exit code 2. Build might be incomplete.
+
+16:42:56 Build Failed. 4 errors, 0 warnings. (took 395ms)
+

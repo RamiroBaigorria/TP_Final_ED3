@@ -1,0 +1,34 @@
+01:48:45 **** Incremental Build of configuration Debug for project InterrupcionesPorGPIO ****
+make -r -j16 all 
+Building file: ../src/InterrupcionesPorGPIO.c
+Invoking: MCU C Compiler
+arm-none-eabi-gcc -DDEBUG -D__CODE_RED -DCORE_M3 -D__USE_CMSIS=CMSISv2p00_LPC17xx -D__LPC17XX__ -D__REDLIB__ -I"C:\nxp\CMSISv2p00_LPC17xx\inc" -O0 -fno-common -g3 -gdwarf-4 -Wall -c -fmessage-length=0 -fno-builtin -ffunction-sections -fdata-sections -fmerge-constants -fmacro-prefix-map="../src/"= -mcpu=cortex-m3 -mthumb -fstack-usage -specs=redlib.specs -MMD -MP -MF"src/InterrupcionesPorGPIO.d" -MT"src/InterrupcionesPorGPIO.o" -MT"src/InterrupcionesPorGPIO.d" -o "src/InterrupcionesPorGPIO.o" "../src/InterrupcionesPorGPIO.c"
+../src/InterrupcionesPorGPIO.c: In function 'EINT3_IRQHandler':
+../src/InterrupcionesPorGPIO.c:15:1: error: parameter 'inte' is initialized
+   15 | uint8_t inte = 0; // Una variable global que cuenta cuántas veces ocurrió cierta interrupción. Al ser global, puede ser vista tanto por el main como por el manejador de interrupciones (EINT3_IRQHandler)
+      | ^~~~~~~
+../src/InterrupcionesPorGPIO.c:17:16: error: expected '=', ',', ';', 'asm' or '__attribute__' before '{' token
+   17 | int main(void) {
+      |                ^
+../src/InterrupcionesPorGPIO.c:41:31: error: expected '=', ',', ';', 'asm' or '__attribute__' before '{' token
+   41 | void retardo (uint32_t tiempo){
+      |                               ^
+../src/InterrupcionesPorGPIO.c:47:20: error: expected '=', ',', ';', 'asm' or '__attribute__' before '{' token
+   47 | void confGPIO(void){
+      |                    ^
+../src/InterrupcionesPorGPIO.c:52:23: error: expected '=', ',', ';', 'asm' or '__attribute__' before '{' token
+   52 | void confIntGPIO(void){
+      |                       ^
+../src/InterrupcionesPorGPIO.c:61:1: error: expected '=', ',', ';', 'asm' or '__attribute__' before '{' token
+   61 | {
+      | ^
+../src/InterrupcionesPorGPIO.c:13:6: error: old-style parameter declarations in prototyped function definition
+   13 | void EINT3_IRQHandler(void)
+      |      ^~~~~~~~~~~~~~~~
+../src/InterrupcionesPorGPIO.c:69: error: expected '{' at end of input
+make[1]: *** [src/subdir.mk:26: src/InterrupcionesPorGPIO.o] Error 1
+make: *** [makefile:35: all] Error 2
+"make -r -j16 all" terminated with exit code 2. Build might be incomplete.
+
+01:48:45 Build Failed. 10 errors, 0 warnings. (took 139ms)
+

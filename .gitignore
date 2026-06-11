@@ -4,6 +4,7 @@ Release/
 build/
 CMSISv1p30_LPC17xx/
 CMSISv2p00_DSPLIB_CM3/
+CMSISv2p00_LPC17xx
 AzureRTOS_TAD_logs/
 FreeRTOS_TAD_logs/
 ZephyrRTOS_TAD_logs/

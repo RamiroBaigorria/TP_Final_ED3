@@ -1,0 +1,15 @@
+01:54:40 **** Build of configuration Debug for project DMA_TP1 ****
+make -r -j16 all 
+Building file: ../src/DMA_TP1.c
+Invoking: MCU C Compiler
+arm-none-eabi-gcc -DDEBUG -D__CODE_RED -DCORE_M3 -D__USE_CMSIS=CMSISv2p00_LPC17xx -D__LPC17XX__ -D__REDLIB__ -O0 -fno-common -g3 -gdwarf-4 -Wall -c -fmessage-length=0 -fno-builtin -ffunction-sections -fdata-sections -fmerge-constants -fmacro-prefix-map="../src/"= -mcpu=cortex-m3 -mthumb -fstack-usage -specs=redlib.specs -MMD -MP -MF"src/DMA_TP1.d" -MT"src/DMA_TP1.o" -MT"src/DMA_TP1.d" -o "src/DMA_TP1.o" "../src/DMA_TP1.c"
+../src/DMA_TP1.c:1:10: fatal error: lpc17xx_adc.h: No such file or directory
+    1 | #include "lpc17xx_adc.h"
+      |          ^~~~~~~~~~~~~~~
+compilation terminated.
+make[1]: *** [src/subdir.mk:26: src/DMA_TP1.o] Error 1
+make: *** [makefile:35: all] Error 2
+"make -r -j16 all" terminated with exit code 2. Build might be incomplete.
+
+01:54:41 Build Failed. 3 errors, 0 warnings. (took 139ms)
+

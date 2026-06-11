@@ -1,0 +1,15 @@
+01:54:40 **** Incremental Build of configuration Debug for project ADC_a_PWM ****
+make -r -j16 all 
+Building file: ../src/ADC_a_PWM.c
+Invoking: MCU C Compiler
+arm-none-eabi-gcc -DDEBUG -D__CODE_RED -DCORE_M3 -D__USE_CMSIS=CMSISv2p00_LPC17xx -D__LPC17XX__ -D__REDLIB__ -O0 -fno-common -g3 -gdwarf-4 -Wall -c -fmessage-length=0 -fno-builtin -ffunction-sections -fdata-sections -fmerge-constants -fmacro-prefix-map="../src/"= -mcpu=cortex-m3 -mthumb -fstack-usage -specs=redlib.specs -MMD -MP -MF"src/ADC_a_PWM.d" -MT"src/ADC_a_PWM.o" -MT"src/ADC_a_PWM.d" -o "src/ADC_a_PWM.o" "../src/ADC_a_PWM.c"
+../src/ADC_a_PWM.c:11:10: fatal error: LPC17xx.h: No such file or directory
+   11 | #include "LPC17xx.h"
+      |          ^~~~~~~~~~~
+compilation terminated.
+make[1]: *** [src/subdir.mk:26: src/ADC_a_PWM.o] Error 1
+make: *** [makefile:35: all] Error 2
+"make -r -j16 all" terminated with exit code 2. Build might be incomplete.
+
+01:54:40 Build Failed. 3 errors, 0 warnings. (took 141ms)
+
