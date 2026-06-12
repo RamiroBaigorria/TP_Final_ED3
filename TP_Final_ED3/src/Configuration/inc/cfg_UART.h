@@ -4,4 +4,7 @@
 #include "LPC17xx.h"
 #include "lpc17xx_uart.h"
 
+void configUART(void);
+void comunicacionUART(char *str);
+
 #endif

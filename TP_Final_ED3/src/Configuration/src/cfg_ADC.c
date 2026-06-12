@@ -13,6 +13,6 @@ uint32_t lecturaADC(void){
 
 	ADC_StartCmd(ADC_START_NOW);	//Start Conversion
 	while(ADC_ChannelGetStatus(SENSOR_ADC_CHANNEL, ADC_DATA_DONE) != SET);	//Esperar a que la conversion termine
-	return (uint16_t)ADC_ChannelGetData(SENSOR_ADC_CHANNEL);	//Carga a lecturaADC con el resultado de la conversion
+	return (uint16_t)ADC_ChannelGetData(SENSOR_ADC_CHANNEL);				//Carga a lecturaADC con el resultado de la conversion
 
 }
