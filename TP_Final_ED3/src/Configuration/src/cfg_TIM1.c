@@ -28,6 +28,7 @@ void configTIMER1(){
 	TIM_InitTimer(LPC_TIM1, &cfgTIM1);
 	TIM_ConfigMatch(LPC_TIM1, &cfgMATCH0);
 	TIM_ConfigMatch(LPC_TIM1, &cfgMATCH1);
+	TIM_Enable(LPC_TIM1);							// ¿Hace falta?
 }
 
 

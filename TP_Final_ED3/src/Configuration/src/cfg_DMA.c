@@ -34,6 +34,12 @@ void movingAverage(){
 	 promedio_distancia = suma / TRANSFERSIZE;	//Moving Average
 }
 
+void configPIN(){
+	GPIO_SetDir (PORT_1, PIN_MOTOR_IZQ_A | PIN_MOTOR_IZQ_B | PIN_MOTOR_DER_A | PIN_MOTOR_DER_B, GPIO_OUTPUT);	// Configurar los 4 pines de control de motores como salida
+	GPIO_ClearPins (PORT_1, PIN_MOTOR_IZQ_A | PIN_MOTOR_IZQ_B | PIN_MOTOR_DER_A | PIN_MOTOR_DER_B);				// Estado inicial seguro: Todo apagado (Auto frenado)
+
+}
+
 void DMA_IRQHandler(void){
 	static uint8_t estado_anterior = 0; // 0 = Libre, 1 = Obstáculo
 

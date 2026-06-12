@@ -1,5 +1,8 @@
 #include "cfg_uart.h"
 
+extern volatile uint32_t velocidad_duty_cycle;
+extern volatile uint8_t auto_en_marcha;
+
 void configUART(void)
 {
 
@@ -55,31 +58,41 @@ void UART0_IRQHandler(void) {
     // Verificar si la interrupción fue legítimamente por recepción de dato (RBR)
     if (UART_GetIntId(UART0) & UART_IIR_INTSTAT_PEND) {
 
-        // Leer el byte recibido limpia la bandera de interrupción automáticamente
-        uint8_t datoRecibido = UART_ReceiveByte(UART0);
+    	// Leer el byte recibido limpia la bandera de interrupción automáticamente
+    	uint8_t datoRecibido = UART_ReceiveByte(UART0);
 
-        switch (datoRecibido) {
-            case 'W': // SUBIR VELOCIDAD
-                if (velocidad_duty_cycle < 90) {
-                    velocidad_duty_cycle += 10;
-                }
-                break;
+    	// CASO ESPECIAL: Si el auto está apagado y mandan la 'W', damos la orden de largada
+		if (datoRecibido == 'W' && auto_en_marcha == 0) {
+			velocidad_duty_cycle = 50; // Seteamos velocidad inicial al 50%
+			auto_en_marcha = 1;        // Despierta al main del bucle seguro
+		}
+					// CONTROL EN MOVIMIENTO: Solo si el auto ya está corriendo procesamos los comandos
+		else if (auto_en_marcha == 1) {
 
-            case 'S': // BAJAR VELOCIDAD
-                if (velocidad_duty_cycle > 10) {
-                    velocidad_duty_cycle -= 10;
-                }
-                break;
 
-            case 'E': // PARADA DE EMERGENCIA
-                velocidad_duty_cycle = 0;
-                break;
+			switch (datoRecibido) {
+				case 'W': // SUBIR VELOCIDAD
+					if (velocidad_duty_cycle < 90) {
+						velocidad_duty_cycle += 10;
+					}
+					break;
 
-            default:
-                break;
-        }
+				case 'S': // BAJAR VELOCIDAD
+					if (velocidad_duty_cycle > 10) {
+						velocidad_duty_cycle -= 10;
+					}
+					break;
 
-        // Actualizamos dinámicamente el Match 1 del Timer 1 con el nuevo Duty Cycle
-        TIM_UpdateMatchValue(LPC_TIM1, 1, velocidad_duty_cycle);
-    }
+				case 'E': // PARADA DE EMERGENCIA
+					velocidad_duty_cycle = 0;
+					break;
+
+				default:
+					break;
+			}
+
+			// Actualizamos dinámicamente el Match 1 del Timer 1 con el nuevo Duty Cycle
+			TIM_UpdateMatchValue(LPC_TIM1, 1, velocidad_duty_cycle);
+		}
+	}
 }

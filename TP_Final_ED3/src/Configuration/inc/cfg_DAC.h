@@ -4,6 +4,6 @@
 #include "LPC17xx.h"
 #include "lpc17xx_dac.h"
 
-#include <stdint.h>
+void configDAC(void);
 
 #endif

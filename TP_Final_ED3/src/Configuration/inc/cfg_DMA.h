@@ -3,6 +3,8 @@
 
 #include "LPC17xx.h"
 #include "lpc17xx_gpdma.h"
+#include "lpc17xx_gpio.h"
+#include "lpc17xx_pinsel.h"
 
 #define PIN_MOTOR_IZQ_A    (1 << 0)   // Pin P1.0
 #define PIN_MOTOR_IZQ_B    (1 << 1)   // Pin P1.1
@@ -19,10 +21,11 @@
 										// Directamente definimos la constante LIMITE_OBSTACULO en base a ese número analógico
 
 #define memoriaADC_BUFFER 0x2007C000
-volatile uint32_t *adc_buffer[10] = (volatile uint32_t *) memoriaADC_BUFFER;	// Buffer en RAM para almacenar las distancias
+volatile uint32_t *adc_buffer[TRANSFERSIZE] = (volatile uint32_t *) memoriaADC_BUFFER;	// Buffer en RAM para almacenar las distancias
 
 void configDMA(void);
 void movingAverage(void);
+void configPIN(void);
 
 
 #endif
