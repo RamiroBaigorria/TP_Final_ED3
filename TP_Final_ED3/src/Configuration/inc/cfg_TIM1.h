@@ -4,6 +4,11 @@
 #include "lpc17xx_timer.h"
 #include "lpc17xx_pinsel.h"
 #include "lpc17xx_gpio.h"
-#include <stdint.h>
+
+#define matchValueInicial 40
+
+void configTIMER1(void);
+
+
 
 #endif

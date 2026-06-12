@@ -1,3 +1,7 @@
+#ifdef __USE_CMSIS
+#include "LPC17xx.h"
+#endif
+
 #include "cfg_adc.h";
 #include "cfg_dac.h";
 #include "cfg_dma.h";

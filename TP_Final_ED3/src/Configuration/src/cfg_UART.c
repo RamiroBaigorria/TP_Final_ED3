@@ -36,7 +36,9 @@ void configUART(void)
     UART_Init(UART0, &cfgUART);
     UART_FIFOConfig(UART0, &cfgFIFO);
 
-    UART_TxEnable(UART0);						// Enciende físicamente el pin de transmisión (TX). A partir de esta línea, el microcontrolador ya es capaz de escupir datos hacia afuera
+    UART_TxEnable(UART0);							// Enciende físicamente el pin de transmisión (TX). A partir de esta línea, el microcontrolador ya es capaz de escupir datos hacia afuera
+    UART_IntConfig(UART0, UART_INTCFG_RBR, ENABLE);	// Habilita la interrupción por recepción de datos (RBR)
+
 }
 
 void comunicacionUART(char *str)
@@ -45,5 +47,39 @@ void comunicacionUART(char *str)
     {
         UART_Send(UART0, (uint8_t *)str, 1, BLOCKING);
         str++;
+    }
+}
+
+void UART0_IRQHandler(void) {
+
+    // Verificar si la interrupción fue legítimamente por recepción de dato (RBR)
+    if (UART_GetIntId(UART0) & UART_IIR_INTSTAT_PEND) {
+
+        // Leer el byte recibido limpia la bandera de interrupción automáticamente
+        uint8_t datoRecibido = UART_ReceiveByte(UART0);
+
+        switch (datoRecibido) {
+            case 'W': // SUBIR VELOCIDAD
+                if (velocidad_duty_cycle < 90) {
+                    velocidad_duty_cycle += 10;
+                }
+                break;
+
+            case 'S': // BAJAR VELOCIDAD
+                if (velocidad_duty_cycle > 10) {
+                    velocidad_duty_cycle -= 10;
+                }
+                break;
+
+            case 'E': // PARADA DE EMERGENCIA
+                velocidad_duty_cycle = 0;
+                break;
+
+            default:
+                break;
+        }
+
+        // Actualizamos dinámicamente el Match 1 del Timer 1 con el nuevo Duty Cycle
+        TIM_UpdateMatchValue(LPC_TIM1, 1, velocidad_duty_cycle);
     }
 }
