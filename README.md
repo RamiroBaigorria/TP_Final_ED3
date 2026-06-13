@@ -7,7 +7,7 @@
 
 ---
 
-## 🚀 1. Descripción General del Proyecto
+## 🚀 Descripción General del Proyecto
     Este proyecto consiste en el diseño y desarrollo de un **vehículo autónomo capaz de evadir obstáculos en tiempo real**. El sistema utiliza un enfoque de hardware de alto rendimiento basado en la arquitectura ARM Cortex-M3, procesando de manera asíncrona las lecturas de un sensor de distancia analógico para determinar si la trayectoria del coche es segura mediante algoritmos de control de movimiento directo sobre motores de corriente continua.
 
     A diferencia de las soluciones convencionales de software bloqueante (basadas en retrasos por software o *polling* continuo), este sistema exprime las capacidades avanzadas del microcontrolador. Utiliza temporizadores de hardware para sincronizar el muestreo, automatiza la transferencia de datos mediante accesos directos a memoria (DMA) y controla la potencia del motor por PWM nativo, minimizando drásticamente la carga de procesamiento de la CPU.
@@ -23,7 +23,7 @@
 
 ---
 
-## 📐 2. Arquitectura del Sistema: Hardware y Software
+## 📐 Arquitectura del Sistema: Hardware y Software
 
 ### 🔌 Hardware & Interconexión
 El núcleo del hardware está constituido por el microcontrolador de desarrollo, interactuando de forma directa con las etapas de adquisición (sensor analógico de proximidad) y la etapa de potencia (controlador de motores puente H).
@@ -37,27 +37,7 @@ El diseño del software sigue una filosofía **modular y configurar los perifér
 
 ---
 
-## ⚡ 3. Especificaciones Eléctricas, Alimentación y Entorno
-
-### 🔌 Parámetros de Alimentación y Consumo
-* **Tensión de operación del sistema:** 3.3V para la lógica del microcontrolador y señales de control; 5V/9V dedicados a la etapa de potencia de los motores.
-* **Consumo estimado o medido:**
-  * En modo activo (motores en marcha a máxima carga y sensores activos): `~450 mA`
-  * En modo reposo (estático, electrónica lógica activa): `~45 mA`
-
-### 📌 Especificaciones del Microcontrolador (Opción B propuesta por el profesor: Cortex-M3 / ARM)
-* **IDE y SDK:** MCUXpresso IDE v11.x utilizando el CMSIS v2.00 para la familia LPC17xx y perifericos del profesor Trujillo.
-* **Microcontrolador Principal:** NXP LPC1769 (Core ARM Cortex-M3 de 32 bits a 100 MHz).
-* **Periféricos Avanzados Utilizados:**
-  * **NVIC (Nested Vectored Interrupt Controller):** Gestión prioritaria de las interrupciones del sistema.
-  * **ADC (Analog-to-Digital Converter):** Operando a una frecuencia de muestreo de hardware configurada a `200 kHz` en el canal 0 (`ADC_CHANNEL_0`).
-  * **GPDMA (General Purpose DMA):** Configurado en modo de transferencia desde el periférico ADC directo a una variable en memoria usando el canal 1 (`GPDMA_CH_1`), eliminando retrasos críticos.
-  * **TIM0 y TIM1:** Temporizadores dedicados al disparo determinista de eventos y a la generación de frecuencias PWM para los puentes de transistores de tracción.
-  * **UART:** Puerto de comunicaciones asíncronas para el vuelco de logs del sistema.
-
----
-
-## 🔄 4. Proceso de Integración y Desarrollo
+## 🔄 Proceso de Integración y Desarrollo
 El proyecto se abordó empleando una metodología incremental con pruebas unitarias modulares para garantizar la robustez del sistema final:
 
 * **Etapa 1 (Estructura Base):** Configuración del SystemInit, árboles de reloj del sistema a 100 MHz y modularización de drivers mediante capas de abstracción (`cfg_NVIC`, `cfg_UART`). Validación mediante eco serie básico.
@@ -67,12 +47,12 @@ El proyecto se abordó empleando una metodología incremental con pruebas unitar
 
 ---
 
-## 📊 5. Ensayos, Pruebas y Resultados
+## 📊 Ensayos, Pruebas y Resultados
 Se realizaron ensayos dinámicos midiendo los tiempos de respuesta del algoritmo ante la detección de barreras físicas. Gracias al uso de transferencias controladas por DMA, el retardo total desde que el sensor detecta un obstáculo hasta que el temporizador PWM altera el sentido de giro del vehículo es menor a **70 milisegundos**, asegurando maniobras de evasión eficaces inclusive a velocidades máximas de desplazamiento.
 
 ---
 
-## 📂 6. Estructura del Repositorio
+## 📂 Estructura del Repositorio
 El repositorio cuenta con una organización limpia y estandarizada. Los archivos temporales generados localmente por la compilación de MCUXpresso e índices Git locales (`.metadata/`, `Debug/`, `Release/`, etc.) se encuentran excluidos mediante el archivo `.gitignore` para preservar la limpieza del repositorio remoto.
 
 ```text
