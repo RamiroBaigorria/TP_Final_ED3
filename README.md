@@ -57,6 +57,7 @@ El repositorio cuenta con una organización limpia y estandarizada. Los archivos
 
 ```text
 ├── firmware/                  # Código fuente del proyecto en MCUXpresso IDE
+|   ├── Main_TP_Final.c    # Lazo principal y lógica de decisión del auto autónomo
 │   ├── inc/                   # Archivos de cabecera (.h) para la configuración modular
 │   │   ├── cfg_ADC.h          # Abstracción y registros del convertidor analógico digital
 │   │   ├── cfg_DAC.h          # Configuración del convertidor digital analógico
@@ -72,8 +73,7 @@ El repositorio cuenta con una organización limpia y estandarizada. Los archivos
 │       ├── cfg_NVIC.c
 │       ├── cfg_TIM0.c
 │       ├── cfg_TIM1.c
-│       ├── cfg_UART.c
-│       └── Main_TP_Final.c    # Lazo principal y lógica de decisión del auto autónomo
+│       ├── cfg_UART.c 
 ├── hardware/                  # Archivos de diseño general del proyecto (Diagrama de flujo)
 ├── docs/                      
 └── README.md                  # Este archivo de presentación y documentación del proyecto
