@@ -10,6 +10,6 @@ void configDAC(void){
 
 	DAC_SetBias(DAC_700uA);
 	DAC_ConfigDAConverterControl(&cfgDAC);
-	DAC_UpdateValue(variableUsadaParaDAC);			//Aca va a ir la variable que vamos a determinar en otro lugar, que va a salir por el DAC
+	//DAC_UpdateValue(variableUsadaParaDAC);			//Aca va a ir la variable que vamos a determinar en otro lugar, que va a salir por el DAC
 
 }

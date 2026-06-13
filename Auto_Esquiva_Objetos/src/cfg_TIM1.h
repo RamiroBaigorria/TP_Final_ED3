@@ -10,6 +10,8 @@
 
 void configTIMER1(void);
 
+extern volatile uint32_t velocidad_duty_cycle;
+
 
 
 #endif

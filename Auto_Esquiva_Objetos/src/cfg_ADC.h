@@ -1,7 +1,9 @@
 #ifndef CFG_ADC_H
 #define CFG_ADC_H
 
+#ifdef __USE_CMSIS
 #include "LPC17xx.h"
+#endif
 #include "lpc17xx_adc.h"
 #include "lpc17xx_pinsel.h"
 
@@ -17,6 +19,6 @@ void configADC(void);
 // lectura de 0 a 4095
 // Girar si Lectura >= LIMITE_OBSTACULO
 // Avanzar si Lectura < LIMITE_OBSTACULO
-uint16_t lecturaADC(void);
+uint32_t lecturaADC(void);
 
 #endif

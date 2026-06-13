@@ -9,6 +9,9 @@ AzureRTOS_TAD_logs/
 FreeRTOS_TAD_logs/
 ZephyrRTOS_TAD_logs/
 
+# Ignorar carpetas internas de Eclipse/MCUXpresso
+.metadata/
+.recommenders/
 
 # archivos de estudio y carpetas personales
 documentacion placa/
@@ -17,7 +20,7 @@ documentacion placa/
 *.ppt
 *.pptx
 *.odp
-*.docx
+*.log
 
 # Binarios y archivos de salida
 *.elf

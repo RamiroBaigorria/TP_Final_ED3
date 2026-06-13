@@ -2,13 +2,13 @@
 #include "LPC17xx.h"
 #endif
 
-#include "cfg_adc.h";
-#include "cfg_dac.h";
-#include "cfg_dma.h";
-#include "cfg_tim0.h";
-#include "cfg_tim1.h";
-#include "cfg_uart.h";
-#include "cfg_nvic.h";
+#include "cfg_adc.h"
+#include "cfg_dac.h"
+#include "cfg_dma.h"
+#include "cfg_tim0.h"
+#include "cfg_tim1.h"
+#include "cfg_uart.h"
+#include "cfg_nvic.h"
 
 volatile uint32_t velocidad_duty_cycle = 0;  // Empieza en 0% (Totalmente frenado)
 volatile uint8_t auto_en_marcha = 0;         // Flag de estado: 0 = Esperando comando, 1 = Corriendo

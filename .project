@@ -3,6 +3,7 @@
 	<name>TP_Final</name>
 	<comment></comment>
 	<projects>
+		<project>Auto_Esquiva_Objetos</project>
 		<project>CMSISv2p00_LPC17xx</project>
 	</projects>
 	<buildSpec>

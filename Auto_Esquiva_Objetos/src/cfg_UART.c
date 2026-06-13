@@ -40,7 +40,7 @@ void configUART(void)
     UART_FIFOConfig(UART0, &cfgFIFO);
 
     UART_TxEnable(UART0);							// Enciende físicamente el pin de transmisión (TX). A partir de esta línea, el microcontrolador ya es capaz de escupir datos hacia afuera
-    UART_IntConfig(UART0, UART_INTCFG_RBR, ENABLE);	// Habilita la interrupción por recepción de datos (RBR)
+    UART_IntConfig(UART0, UART_INT_RBR, ENABLE);	// Habilita la interrupción por recepción de datos (RBR)
 
 }
 

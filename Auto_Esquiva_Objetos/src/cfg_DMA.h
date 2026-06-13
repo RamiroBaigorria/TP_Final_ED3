@@ -20,8 +20,10 @@
 										// Medimos con el ADC qué valor entrega el sensor a esa distancia. (Ejemplo: El ADC nos devuelve 1850)
 										// Directamente definimos la constante LIMITE_OBSTACULO en base a ese número analógico
 
-#define memoriaADC_BUFFER 0x2007C000
-volatile uint32_t *adc_buffer[TRANSFERSIZE] = (volatile uint32_t *) memoriaADC_BUFFER;	// Buffer en RAM para almacenar las distancias
+//#define memoriaADC_BUFFER 0x2007C000
+//volatile uint32_t *adc_buffer[TRANSFERSIZE] = (volatile uint32_t *) memoriaADC_BUFFER;	// Buffer en RAM para almacenar las distancias
+
+volatile uint32_t adc_buffer[TRANSFERSIZE] = {0};
 
 void configDMA(void);
 void movingAverage(void);

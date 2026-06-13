@@ -1,4 +1,7 @@
 #include "cfg_dma.h"
+#include "cfg_uart.h"
+
+uint32_t promedio_distancia = 0;
 
 void configDMA(){
 	GPDMA_Channel_CFG_T cfgDMA;
@@ -23,9 +26,8 @@ void configDMA(){
 }
 
 void movingAverage(){
-	 static uint32_t i = 0;
+
 	 uint32_t suma = 0;
-	 uint32_t promedio_distancia = 0;
 
 	 for(int i=0; i<TRANSFERSIZE; i++) {
 		 suma += adc_buffer[i];

@@ -1,6 +1,8 @@
 #include "cfg_tim1.h"
 #include "cfg_dma.h"
 
+volatile uint32_t velocidad_duty_cycle = 0;
+
 void configTIMER1(){
 
 	TIM_TIMERCFG_T cfgTIM1;

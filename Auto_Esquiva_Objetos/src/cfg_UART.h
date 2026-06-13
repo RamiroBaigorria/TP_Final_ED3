@@ -4,6 +4,7 @@
 #include "LPC17xx.h"
 #include "lpc17xx_uart.h"
 #include "lpc17xx_timer.h"
+#include "lpc17xx_pinsel.h"
 
 void configUART(void);
 void comunicacionUART(char *str);
