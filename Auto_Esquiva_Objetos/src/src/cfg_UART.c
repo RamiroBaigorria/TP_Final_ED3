@@ -1,7 +1,9 @@
 #include "cfg_uart.h"
+#include "cfg_dma.h"
 
 extern volatile uint32_t velocidad_duty_cycle;
 extern volatile uint8_t auto_en_marcha;
+uint8_t detenerAuto = 0;
 
 void configUART(void)
 {
@@ -62,32 +64,36 @@ void UART0_IRQHandler(void) {
     	uint8_t datoRecibido = UART_ReceiveByte(UART0);
 
     	// CASO ESPECIAL: Si el auto está apagado y mandan la 'W', damos la orden de largada
-		if (datoRecibido == 'W' && auto_en_marcha == 0) {
-			velocidad_duty_cycle = 50; // Seteamos velocidad inicial al 50%
+		if (auto_en_marcha == 0) {
+			velocidad_duty_cycle = 30; // Seteamos velocidad inicial al 30%
 			auto_en_marcha = 1;        // Despierta al main del bucle seguro
 		}
 					// CONTROL EN MOVIMIENTO: Solo si el auto ya está corriendo procesamos los comandos
 		else if (auto_en_marcha == 1) {
 
-
 			switch (datoRecibido) {
-				case 'W': // SUBIR VELOCIDAD
-					if (velocidad_duty_cycle < 90) {
-						velocidad_duty_cycle += 10;
+				case '1': // Baja velocidad
+					velocidad_duty_cycle = 30;
+
+					break;
+
+				case '2': // Media velocidad
+					velocidad_duty_cycle = 60;
 					}
 					break;
 
-				case 'S': // BAJAR VELOCIDAD
-					if (velocidad_duty_cycle > 10) {
-						velocidad_duty_cycle -= 10;
-					}
+				case '3': // Alta velocidad
+					velocidad_duty_cycle = 90;
 					break;
 
-				case 'E': // PARADA DE EMERGENCIA
-					velocidad_duty_cycle = 0;
+				case 'E': // Alta velocidad
+					//void detenerVehiculo(){}
+					detenerAuto = 1;
+
 					break;
 
 				default:
+					comunicacionUART("[ERROR]: Seleccione una opcion posible...\r\n");
 					break;
 			}
 
@@ -95,4 +101,3 @@ void UART0_IRQHandler(void) {
 			TIM_UpdateMatchValue(LPC_TIM1, 1, velocidad_duty_cycle);
 		}
 	}
-}

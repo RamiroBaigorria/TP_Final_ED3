@@ -36,7 +36,7 @@ int main(void) {
             __WFI();
         }
     //¡ORDEN DE LARGADA RECIBIDA! Habilitamos los Timers y el DMA de forma sincronizada para que el auto empiece a operar
-    comunicacionUART("[SISTEMA RUNNING]: Iniciando motores y sensores...\r\n");
+    comunicacionUART("[AUTO FUNCIONANDO]: Iniciando motores y sensores...\r\n");
 
 	// Habilitar físicamente los temporizadores para que empiecen a correr
     TIM_Enable(LPC_TIM0);           // Arranca el muestreo del ADC cada 100ms

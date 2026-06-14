@@ -57,7 +57,7 @@ El repositorio cuenta con una organización limpia y estandarizada. Los archivos
 
 ```text
 ├── firmware/                  # Código fuente del proyecto en MCUXpresso IDE
-|   ├── Main_TP_Final.c    # Lazo principal y lógica de decisión del auto autónomo
+|   ├── Main_TP_Final.c        # Lazo principal y lógica de decisión del auto autónomo
 │   ├── inc/                   # Archivos de cabecera (.h) para la configuración modular
 │   │   ├── cfg_ADC.h          # Abstracción y registros del convertidor analógico digital
 │   │   ├── cfg_DAC.h          # Configuración del convertidor digital analógico

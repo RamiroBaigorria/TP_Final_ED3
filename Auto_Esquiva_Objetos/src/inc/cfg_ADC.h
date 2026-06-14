@@ -19,6 +19,6 @@ void configADC(void);
 // lectura de 0 a 4095
 // Girar si Lectura >= LIMITE_OBSTACULO
 // Avanzar si Lectura < LIMITE_OBSTACULO
-uint32_t lecturaADC(void);
+// uint32_t lecturaADC(void);
 
 #endif

@@ -25,7 +25,7 @@ void configTIMER1(){
 	cfgMATCH1.stopEn 		= DISABLE;
 	cfgMATCH1.resetEn 		= DISABLE;				// Va en DISABLE ya que el RESET lo tenemos que manejar con el MATCH0
 	cfgMATCH1.extOpt 		= 0;
-	cfgMATCH1.matchValue 	= matchValueInicial;	// Arranca al 40% por defecto
+	cfgMATCH1.matchValue 	= matchValueInicial;	// Arranca al 30% por defecto
 
 	TIM_InitTimer(LPC_TIM1, &cfgTIM1);
 	TIM_ConfigMatch(LPC_TIM1, &cfgMATCH0);
@@ -42,26 +42,11 @@ void TIMER1_IRQHandler(void){
     // ---------------- INTERRUPCIÓN MATCH 0 (Inicio del ciclo: 0%) ----------------//
     if(TIM_GetIntStatus(LPC_TIM1, TIM_MR0_INT) == 1){
 
-        // Si el duty cycle es 0, dejamos todo apagado y no hacemos nada
-        if (velocidad_duty_cycle > 0) {
-
-            // Leemos el estado actual del Puerto 1 para saber qué motores están en '1' debido al DMA
-            motores_activos = GPIO_ReadValue(PORT_1) & (PIN_MOTOR_IZQ_A | PIN_MOTOR_IZQ_B | PIN_MOTOR_DER_A | PIN_MOTOR_DER_B);
-
-            // Volvemos a encender esos mismos pines para arrancar el pulso en alto
-            GPIO_SetPins(PORT_1, motores_activos);
-        }
-
         TIM_ClearIntPending(LPC_TIM1, TIM_MR0_INT);
     }
 
     // ---------------- INTERRUPCIÓN MATCH 1 (Fin del Duty Cycle) ----------------
     if(TIM_GetIntStatus(LPC_TIM1, TIM_MR1_INT) == 1){
-
-        // Si el duty cycle es menor al 100%, cortamos la energía apagando los pines activos
-        if (velocidad_duty_cycle < 100) {
-            GPIO_ClearPins(PORT_1, PIN_MOTOR_IZQ_A | PIN_MOTOR_IZQ_B | PIN_MOTOR_DER_A | PIN_MOTOR_DER_B);
-        }
 
         TIM_ClearIntPending(LPC_TIM1, TIM_MR1_INT);
     }

@@ -11,9 +11,10 @@
 #define PIN_MOTOR_DER_A    (1 << 2)   // Pin P1.2
 #define PIN_MOTOR_DER_B    (1 << 3)   // Pin P1.3
 
-#define CHANNEL0_P2P     	GPDMA_CH_0
+//#define CHANNEL0_P2P     	GPDMA_CH_0
 #define CHANNEL1_P2M     	GPDMA_CH_1
 #define TRANSFERSIZE 		7
+#define PIN_LPC				0x400000
 
 #define LIMITE_OBSTACULO		1850  	// Equivale a 20 cm medidos en el laboratorio (REALIZAR LA MEDICION REAL NOSOTROS MISMOS, ESTE ES UN VALOR COMUN pero NO SIEMPRE CIERTO)
 								 		// Poner el auto frente a una pared a la distancia exacta a la que queremos que doble (Ejemplo: 20 cm).
@@ -28,6 +29,7 @@ volatile uint32_t adc_buffer[TRANSFERSIZE] = {0};
 void configDMA(void);
 void movingAverage(void);
 void configPIN(void);
+void delay_2seg(void);
 
 
 #endif

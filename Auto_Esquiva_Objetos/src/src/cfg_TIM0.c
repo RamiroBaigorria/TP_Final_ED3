@@ -7,7 +7,7 @@ void configTIMER0(void){
 
 	TIM_MATCHCFG_T cfgMATCH;
 	cfgMATCH.channel	= TIM_MATCH_1;
-	cfgMATCH.intEn 		= ENABLE;
+	cfgMATCH.intEn 		= DISABLE;
 	cfgMATCH.stopEn 	= DISABLE;
 	cfgMATCH.resetEn 	= ENABLE;
 	cfgMATCH.extOpt 	= TIM_NOTHING;
@@ -18,3 +18,13 @@ void configTIMER0(void){
 	TIM_Enable(LPC_TIM0);				// ¿Hace falta?
 
 }
+
+/*void TIMER0_IRQHandler(void){
+	if(TIM_GetIntStatus(LPC_TIM0, TIM_MR0_INT) == 1){
+
+		TIM_ClearIntPending(LPC_TIM0, TIM_MR0_INT);
+		lecturaADC();
+
+	}
+}
+*/
