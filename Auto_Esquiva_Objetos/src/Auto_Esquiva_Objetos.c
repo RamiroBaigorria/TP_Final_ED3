@@ -12,6 +12,12 @@
 
 volatile uint32_t velocidad_duty_cycle = 0;  // Empieza en 0% (Totalmente frenado)
 volatile uint8_t auto_en_marcha = 0;         // Flag de estado: 0 = Esperando comando, 1 = Corriendo
+extern volatile uint32_t promedio_distancia; // Declarada en el modulo DMA
+extern uint8_t detenerAuto;                  // Declarada en el modulo UART
+
+void esquivarObstaculo(void);
+void avanzarLineaRecta(void);
+void frenarMotores(void);
 
 int main(void) {
 
@@ -27,7 +33,7 @@ int main(void) {
 
 	// Estado de reposo inicial: Cartel de bienvenida por Bluetooth
 	comunicacionUART("===========================================\r\n");
-	comunicacionUART("   SISTEMA INICIALIZADO - AUTO EVASOR OK   \r\n");
+	comunicacionUART("   SISTEMA INICIALIZADO - AUTO EVASOR        \r\n");
     comunicacionUART(" Envie 'W' por Bluetooth para iniciar marcha \r\n");
     comunicacionUART("===========================================\r\n");
 
@@ -44,6 +50,22 @@ int main(void) {
     GPDMA_ChannelStart(GPDMA_CH_1); // Habilita el canal del DMA para escuchar al ADC
 
     while(1){
-    		return 0 ;
-    	}
-}
+            if(detenerAuto == 1) {
+                frenarMotores();
+                while(detenerAuto == 1) {
+                    __WFI(); // Quedarse esperando un cambio por UART de forma segura
+                }
+            }
+
+            // CONTROL DE TRAYECTORIA (Procesamiento en primer plano)
+            if (promedio_distancia > LIMITE_OBSTACULO) {
+            	comunicacionUART("¡Obstaculo detectado! Girando...\r\n");
+                esquivarObstaculo();
+            } else {
+            	comunicacionUART("Camino libre. Avanzando en linea recta.\r\n");
+                avanzarLineaRecta();
+            }
+        }
+        return 0;
+    }
+

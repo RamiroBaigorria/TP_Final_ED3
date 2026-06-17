@@ -3,7 +3,7 @@
 
 extern volatile uint32_t velocidad_duty_cycle;
 extern volatile uint8_t auto_en_marcha;
-uint8_t detenerAuto = 0;
+volatile uint8_t detenerAuto = 0;
 
 void configUART(void)
 {
@@ -27,7 +27,7 @@ void configUART(void)
 	PINSEL_ConfigPin(&cfgPIN03);				//UART_PinConfig(UART_RX0_P0_3);
 
     UART_CFG_T cfgUART;
-    	cfgUART.baudRate = 9600;				// Si cambio este valor, lo tengo que cambiar en el programa que use en la PC para el uart (hercules, Putty o Termite)
+    	cfgUART.baudRate = 115000;				// Si cambio este valor, lo tengo que cambiar en el programa que use en la PC para el uart (hercules, Putty o Termite)
 		cfgUART.parity   = UART_PARITY_NONE;	// Sin bit de paridad
     	cfgUART.dataBits = UART_DBITS_8;		// 8 bits de datos
 		cfgUART.stopBits = UART_STOPBIT_1;		// 1 bit de parada
@@ -60,42 +60,51 @@ void UART0_IRQHandler(void) {
     // Verificar si la interrupción fue legítimamente por recepción de dato (RBR)
     if (UART_GetIntId(UART0) & UART_IIR_INTSTAT_PEND) {
 
+    	comunicacionUART("Seleccione la velocidad del auto:\r\n");
+
     	// Leer el byte recibido limpia la bandera de interrupción automáticamente
     	uint8_t datoRecibido = UART_ReceiveByte(UART0);
 
     	// CASO ESPECIAL: Si el auto está apagado y mandan la 'W', damos la orden de largada
+
 		if (auto_en_marcha == 0) {
-			velocidad_duty_cycle = 30; // Seteamos velocidad inicial al 30%
-			auto_en_marcha = 1;        // Despierta al main del bucle seguro
+			if(datoRecibido == 'W'){
+				velocidad_duty_cycle = 30; // Seteamos velocidad inicial al 30%
+				auto_en_marcha = 1;        // Despierta al main del bucle seguro
+			}else{
+			    comunicacionUART("Envie 'W' por Bluetooth para iniciar marcha\r\n");
+			}
 		}
-					// CONTROL EN MOVIMIENTO: Solo si el auto ya está corriendo procesamos los comandos
+		// CONTROL EN MOVIMIENTO: Solo si el auto ya está corriendo procesamos los comandos
 		else if (auto_en_marcha == 1) {
 
 			switch (datoRecibido) {
 				case '1': // Baja velocidad
 					velocidad_duty_cycle = 30;
-
 					break;
 
 				case '2': // Media velocidad
 					velocidad_duty_cycle = 60;
-					}
 					break;
 
 				case '3': // Alta velocidad
 					velocidad_duty_cycle = 90;
 					break;
 
-				case 'E': // Alta velocidad
-					//void detenerVehiculo(){}
-					detenerAuto = 1;
-
+				case 'E': // Detener auto ó Arrancarlo (a baja velocidad) si ya estaba detenido
+					if(detenerAuto == 1){
+						detenerAuto = 0;
+						velocidad_duty_cycle = 30;
+					} else {
+						detenerAuto = 1;
+					}
 					break;
 
 				default:
-					comunicacionUART("[ERROR]: Seleccione una opcion posible...\r\n");
+					comunicacionUART("[ERROR]: Seleccione una opcion adecuada...\r\n");
 					break;
 			}
+		}
 
 			// Actualizamos dinámicamente el Match 1 del Timer 1 con el nuevo Duty Cycle
 			TIM_UpdateMatchValue(LPC_TIM1, 1, velocidad_duty_cycle);

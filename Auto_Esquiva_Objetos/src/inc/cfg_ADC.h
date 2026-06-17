@@ -14,6 +14,9 @@
 //----Inicializo funciones----
 void configADC(void);
 
+void avanzarLineaRecta(void);
+void frenarMotores(void);
+void esquivarObstaculo(void);
 
 //----Lectura de la distancia----
 // lectura de 0 a 4095

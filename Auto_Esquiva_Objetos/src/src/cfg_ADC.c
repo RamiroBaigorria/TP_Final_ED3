@@ -19,3 +19,25 @@ void configADC(void){
 }
 */
 
+void avanzarLineaRecta(){
+    // Configura Pines del Puerto 1 para que ambos motores vayan adelante
+    GPIO_SetValue(PORT_1, PIN_MOTOR_IZQ_A | PIN_MOTOR_DER_A);
+    GPIO_ClearValue(PORT_1, PIN_MOTOR_IZQ_B | PIN_MOTOR_DER_B);
+}
+
+void frenarMotores(){
+    GPIO_ClearValue(PORT_1, PIN_MOTOR_IZQ_A | PIN_MOTOR_IZQ_B | PIN_MOTOR_DER_A | PIN_MOTOR_DER_B);
+}
+
+void esquivarObstaculo(){
+    frenarMotores();
+    delay_2seg(); // Pausa de seguridad antes de girar
+
+    // Girar (Ej: Motor Izquierdo Adelante, Derecho Atrás)
+    GPIO_SetValue(PORT_1, PIN_MOTOR_IZQ_A | PIN_MOTOR_DER_B);
+    GPIO_ClearValue(PORT_1, PIN_MOTOR_IZQ_B | PIN_MOTOR_DER_A);
+
+    delay_2seg(); // Girando durante 2 segundos
+    frenarMotores();
+    delay_2seg(); // Pausa antes de volver a evaluar el camino
+}
