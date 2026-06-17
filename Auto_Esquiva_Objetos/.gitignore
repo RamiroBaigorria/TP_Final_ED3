@@ -1,5 +1,7 @@
 # Carpetas generadas por MCUXpresso
 Debug/
+.settings/
+MCU/
 Release/
 build/
 CMSISv1p30_LPC17xx/
@@ -8,13 +10,14 @@ CMSISv2p00_LPC17xx
 AzureRTOS_TAD_logs/
 FreeRTOS_TAD_logs/
 ZephyrRTOS_TAD_logs/
+documentacion placa/
 
-# Ignorar carpetas internas de Eclipse/MCUXpresso
 .metadata/
 .recommenders/
+.settings/
+.cproject/
+.project/
 
-# archivos de estudio y carpetas personales
-documentacion placa/
 *.pdf
 *.txt
 *.ppt
@@ -22,7 +25,6 @@ documentacion placa/
 *.odp
 *.log
 
-# Binarios y archivos de salida
 *.elf
 *.bin
 *.hex
