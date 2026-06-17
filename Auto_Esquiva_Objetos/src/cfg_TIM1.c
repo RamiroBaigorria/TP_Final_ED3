@@ -18,7 +18,7 @@ void configTIMER1(){
 	cfgMATCH0.stopEn 		= DISABLE;
 	cfgMATCH0.resetEn 		= ENABLE;		// Resetea el timer para empezar de nuevo
 	cfgMATCH0.extOpt 		= 0;
-	cfgMATCH0.matchValue 	= 100;			// Periodo total = 100 ticks (100 * 100us = 10ms -> 100 Hz
+	cfgMATCH0.matchValue 	= 100;			// Periodo total = 100 * 100us = 10ms (Va a ser el doble que el periodo del TIM0)
 
 	// MATCH 1: Define el Duty Cycle (Ancho de pulso)
 	TIM_MATCHCFG_T cfgMATCH1;

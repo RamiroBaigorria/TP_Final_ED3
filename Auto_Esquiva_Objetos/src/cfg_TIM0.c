@@ -11,7 +11,7 @@ void configTIMER0(void){
 	cfgMATCH.stopEn 	= DISABLE;
 	cfgMATCH.resetEn 	= ENABLE;
 	cfgMATCH.extOpt 	= TIM_TOGGLE; 	// Cambia de estado para que el ADC detecte el flanco de disparo
-	cfgMATCH.matchValue = 10000; 		// Interrupcion cada 10ms
+	cfgMATCH.matchValue = 5000; 		// Interrupcion cada 5ms
 
 	TIM_InitTimer(LPC_TIM0, &cfgTIM0);
 	TIM_ConfigMatch(LPC_TIM0, &cfgMATCH);

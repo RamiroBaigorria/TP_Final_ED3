@@ -2,7 +2,7 @@
 
 void configDAC(void){
 
-	DAC_Init();
+	DAC_Init();							//El pin del DAC se configura solo con esta funcion. Bit 20 y 21 del PINSEL1, funcion 10: AOUT
 	DAC_CONVERTER_CFG_T cfgDAC;
 	cfgDAC.doubleBuffer = DISABLE;
 	cfgDAC.dmaCounter = DISABLE;

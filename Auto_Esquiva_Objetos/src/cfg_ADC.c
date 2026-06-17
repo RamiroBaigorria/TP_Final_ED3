@@ -9,6 +9,7 @@ void configADC(void){
 	ADC_PinConfig(SENSOR_ADC_CHANNEL);
 	ADC_PowerUp();
 	ADC_StartCmd(ADC_START_ON_MAT01);
+	ADC_EdgeStartConfig(ADC_START_ON_RISING);	//ADC empieza a convertir en flanco ascendente del Match1 del Timer0
 	ADC_ChannelEnable(SENSOR_ADC_CHANNEL);
 	ADC_BurstDisable();
 	ADC_IntDisable(ADC_INT_CH0);				//Lo desactivamos ya que el que se va a encargar de manejar el fin de conversion es el Request del DMA

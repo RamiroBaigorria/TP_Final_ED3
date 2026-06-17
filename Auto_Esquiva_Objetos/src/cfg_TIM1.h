@@ -6,7 +6,7 @@
 #include "lpc17xx_pinsel.h"
 #include "lpc17xx_gpio.h"
 
-#define matchValueInicial 30
+#define matchValueInicial 5999 //30% de 20000
 
 void configTIMER1(void);
 

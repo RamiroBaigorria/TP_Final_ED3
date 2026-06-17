@@ -1,6 +1,8 @@
 #ifdef __USE_CMSIS
 #include "LPC17xx.h"
 #endif
+#include <stdio.h>
+#include <semihost_hardfault.h>
 
 #include "cfg_ADC.h"
 #include "cfg_DAC.h"
@@ -10,10 +12,11 @@
 #include "cfg_UART.h"
 #include "cfg_NVIC.h"
 
-volatile uint32_t velocidad_duty_cycle = 0;  // Empieza en 0% (Totalmente frenado)
-volatile uint8_t auto_en_marcha = 0;         // Flag de estado: 0 = Esperando comando, 1 = Corriendo
-extern volatile uint32_t promedio_distancia; // Declarada en el modulo DMA
-extern uint8_t detenerAuto;                  // Declarada en el modulo UART
+volatile uint32_t velocidad_duty_cycle = 0;  	// Empieza en 0% (Totalmente frenado)
+volatile uint8_t auto_en_marcha = 0;         	// Flag de estado: 0 = Esperando comando, 1 = Corriendo
+extern volatile uint32_t promedio_distancia; 	// Declarada en el modulo DMA
+extern uint8_t detenerAuto;                 	// Declarada en el modulo UART
+char mensaje_uart[100];							// Array de caracteres (buffer)
 
 
 void esquivarObstaculo(void);
@@ -60,7 +63,9 @@ int main(void) {
 
             // CONTROL DE TRAYECTORIA (Procesamiento en primer plano)
             if (promedio_distancia > LIMITE_OBSTACULO) {
-            	comunicacionUART("¡Obstaculo detectado! Girando...\r\n");
+            	xsprintf(mensaje_uart, "¡Obstaculo detectado, esta a %dcm! Girando...\r\n", promedio_distancia);
+            	comunicacionUART(mensaje_uart);
+            	//comunicacionUART("¡Obstaculo detectado! Girando...\r\n");
                 esquivarObstaculo();
             } else {
             	comunicacionUART("Camino libre. Avanzando en linea recta.\r\n");
