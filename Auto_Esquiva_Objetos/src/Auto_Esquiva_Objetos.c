@@ -2,18 +2,19 @@
 #include "LPC17xx.h"
 #endif
 
-#include "cfg_adc.h"
-#include "cfg_dac.h"
-#include "cfg_dma.h"
-#include "cfg_tim0.h"
-#include "cfg_tim1.h"
-#include "cfg_uart.h"
-#include "cfg_nvic.h"
+#include "cfg_ADC.h"
+#include "cfg_DAC.h"
+#include "cfg_DMA.h"
+#include "cfg_TIM0.h"
+#include "cfg_TIM1.h"
+#include "cfg_UART.h"
+#include "cfg_NVIC.h"
 
 volatile uint32_t velocidad_duty_cycle = 0;  // Empieza en 0% (Totalmente frenado)
 volatile uint8_t auto_en_marcha = 0;         // Flag de estado: 0 = Esperando comando, 1 = Corriendo
 extern volatile uint32_t promedio_distancia; // Declarada en el modulo DMA
 extern uint8_t detenerAuto;                  // Declarada en el modulo UART
+
 
 void esquivarObstaculo(void);
 void avanzarLineaRecta(void);

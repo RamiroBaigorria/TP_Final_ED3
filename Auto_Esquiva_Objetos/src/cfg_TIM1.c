@@ -1,7 +1,9 @@
-#include "cfg_tim1.h"
-#include "cfg_dma.h"
+#include "cfg_TIM1.h"
+#include "cfg_DMA.h"
+#include "cfg_UART.h"
 
-volatile uint32_t velocidad_duty_cycle = 0;
+extern volatile uint32_t velocidad_duty_cycle;
+extern uint8_t detenerAuto;
 
 void configTIMER1(){
 

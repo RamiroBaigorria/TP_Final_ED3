@@ -1,4 +1,4 @@
-#include "cfg_nvic.h"
+#include "cfg_NVIC.h"
 
 void configNVIC(){
 

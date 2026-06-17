@@ -1,4 +1,8 @@
-#include "cfg_adc.h"
+#include "cfg_ADC.h"
+#include "cfg_DMA.h"
+#include "lpc17xx_gpio.h"
+
+extern void delay_2seg(void);
 
 void configADC(void){
 	ADC_Init(SENSOR_ADC_FREC);							//frecuenciaMaximaPosible = 200 [kHz]
@@ -21,12 +25,12 @@ void configADC(void){
 
 void avanzarLineaRecta(){
     // Configura Pines del Puerto 1 para que ambos motores vayan adelante
-    GPIO_SetValue(PORT_1, PIN_MOTOR_IZQ_A | PIN_MOTOR_DER_A);
-    GPIO_ClearValue(PORT_1, PIN_MOTOR_IZQ_B | PIN_MOTOR_DER_B);
+	GPIO_SetPins(PORT_1, PIN_MOTOR_IZQ_A | PIN_MOTOR_DER_A);
+	GPIO_ClearPins(PORT_1, PIN_MOTOR_IZQ_B | PIN_MOTOR_DER_B);
 }
 
 void frenarMotores(){
-    GPIO_ClearValue(PORT_1, PIN_MOTOR_IZQ_A | PIN_MOTOR_IZQ_B | PIN_MOTOR_DER_A | PIN_MOTOR_DER_B);
+	GPIO_ClearPins(PORT_1, PIN_MOTOR_IZQ_A | PIN_MOTOR_IZQ_B | PIN_MOTOR_DER_A | PIN_MOTOR_DER_B);
 }
 
 void esquivarObstaculo(){
@@ -34,8 +38,8 @@ void esquivarObstaculo(){
     delay_2seg(); // Pausa de seguridad antes de girar
 
     // Girar (Ej: Motor Izquierdo Adelante, Derecho Atrás)
-    GPIO_SetValue(PORT_1, PIN_MOTOR_IZQ_A | PIN_MOTOR_DER_B);
-    GPIO_ClearValue(PORT_1, PIN_MOTOR_IZQ_B | PIN_MOTOR_DER_A);
+    GPIO_SetPins(PORT_1, PIN_MOTOR_IZQ_A | PIN_MOTOR_DER_B);
+    GPIO_ClearPins(PORT_1, PIN_MOTOR_IZQ_B | PIN_MOTOR_DER_A);
 
     delay_2seg(); // Girando durante 2 segundos
     frenarMotores();

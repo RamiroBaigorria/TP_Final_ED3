@@ -24,7 +24,8 @@
 //#define memoriaADC_BUFFER 0x2007C000
 //volatile uint32_t *adc_buffer[TRANSFERSIZE] = (volatile uint32_t *) memoriaADC_BUFFER;	// Buffer en RAM para almacenar las distancias
 
-volatile uint32_t adc_buffer[TRANSFERSIZE] = {0};
+extern volatile uint32_t adc_buffer[];
+
 
 void configDMA(void);
 void movingAverage(void);

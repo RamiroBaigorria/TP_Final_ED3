@@ -1,4 +1,4 @@
-#include "cfg_tim0.h"
+#include "cfg_TIM0.h"
 
 void configTIMER0(void){
 	TIM_TIMERCFG_T cfgTIM0;

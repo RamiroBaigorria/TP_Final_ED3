@@ -6,6 +6,7 @@
 #endif
 #include "lpc17xx_adc.h"
 #include "lpc17xx_pinsel.h"
+#include "lpc17xx_gpio.h"
 
 //----Config ADC----
 #define SENSOR_ADC_CHANNEL     	ADC_CHANNEL_0

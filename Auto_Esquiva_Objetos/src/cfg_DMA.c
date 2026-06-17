@@ -1,7 +1,10 @@
-#include "cfg_dma.h"
-#include "cfg_uart.h"
+#include "cfg_DMA.h"
+#include "cfg_UART.h"
+#include "cfg_DAC.h"
+#include "lpc17xx_dac.h"
 
 uint32_t promedio_distancia = 0;
+volatile uint32_t adc_buffer[TRANSFERSIZE];
 
 void configDMA(){
 	GPDMA_Channel_CFG_T cfgDMA;
@@ -50,7 +53,7 @@ void delay_2seg(void){
 }
 
 void DMA_IRQHandler(void){
-	static uint8_t estado_anterior = 0; // 0 = Libre, 1 = Obstáculo
+	//static uint8_t estado_anterior = 0; // 0 = Libre, 1 = Obstáculo
 
 	if (GPDMA_IntGetStatus(GPDMA_INTTC, CHANNEL1_P2M)) {
 	        GPIO_SetPins(PORT_0, PIN_LPC); 			// Test de actividad física

@@ -1,5 +1,5 @@
-#include "cfg_uart.h"
-#include "cfg_dma.h"
+#include "cfg_UART.h"
+#include "cfg_DMA.h"
 
 extern volatile uint32_t velocidad_duty_cycle;
 extern volatile uint8_t auto_en_marcha;
