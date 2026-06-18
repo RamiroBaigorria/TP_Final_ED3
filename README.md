@@ -33,7 +33,7 @@ El núcleo del hardware está constituido por el microcontrolador de desarrollo 
 
 ## Hardware Utilizado
 - 🔸 Sensor: GP2Y0A21YK0F
-- 🔸 Motor:
+- 🔸 Motor: Motor DC (x2)
 - 🔸 Microcontrolador: LPC1769
 - 🔸 Driver del motor: DRV8833
 - 🔸 Modulo bluetooth: HC05  
