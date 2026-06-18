@@ -42,13 +42,13 @@ El núcleo del hardware está constituido por el microcontrolador de desarrollo 
 El diseño del software sigue una filosofía **modular y configurar los periférico de forma autónoma** (solicitado por el profe), donde el bucle principal (`while()`) se encarga de realizar el diagnóstico principal utilizado para tomar decisiones respecto al entorno.
 
 ## Perifericos Utilizados
--🔸 ADC
--🔸 DAC
--🔸 DMA
--🔸 TIMER0
--🔸 TIMER1
--🔸 UART
--🔸 Interrupciones de perifericos como ADC, TIMERs, DMA y UART  
+- 🔸 ADC
+- 🔸 DAC
+- 🔸 DMA
+- 🔸 TIMER0
+- 🔸 TIMER1 
+- 🔸 UART
+- 🔸 Interrupciones de perifericos como ADC, TIMERs, DMA y UART
 
 * **Diagrama de Flujo:** El Timer0 dispara el ADC; el ADC avisa al DMA cuando finaliza la conversión; el DMA guarda el dato en memoria; el dato se analiza; la CPU lee la variable de forma asíncrona y recalcula el ciclo de trabajo del PWM en el Timer1 para los motores.
   `![Esquemático Completo](Diseño/Diagrama de Flujo.png)`
