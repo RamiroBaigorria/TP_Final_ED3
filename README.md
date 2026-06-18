@@ -1,8 +1,12 @@
 # 🚗 Auto Autónomo Evasor de Obstáculos
-> **Asignatura:** Electrónica Digital III - Universidad Nacional de Córdoba (FCEFyN)  
-> **Integrantes:** * Baigorria, Ramiro Javier  
->                  * Cravero, Lorenzo
->                  * Gonzalez, Tobias
+
+> **Asignatura:** Electrónica Digital III - Universidad Nacional de Córdoba (FCEFyN)
+>
+> **Integrantes:**
+> - Baigorria, Ramiro Javier
+> - Cravero, Lorenzo
+> - Gonzalez, Tobias
+>
 > **Profesor:** Blasco
 
 ---
