@@ -15,21 +15,16 @@
 #define TRANSFERSIZE 		7
 #define PIN_LPC				(1 << 22)
 
-#define LIMITE_OBSTACULO		1850  	// Equivale a 20 cm medidos en el laboratorio (REALIZAR LA MEDICION REAL NOSOTROS MISMOS, ESTE ES UN VALOR COMUN pero NO SIEMPRE CIERTO)
-								 		// Poner el auto frente a una pared a la distancia exacta a la que queremos que doble (Ejemplo: 20 cm).
-										// Medimos con el ADC qué valor entrega el sensor a esa distancia. (Ejemplo: El ADC nos devuelve 1850)
-										// Directamente definimos la constante LIMITE_OBSTACULO en base a ese número analógico
+#define LIMITE_OBSTACULO	1850  	// Equivale a 20 cm medidos en el laboratorio (REALIZAR LA MEDICION REAL NOSOTROS MISMOS, ESTE ES UN VALOR COMUN pero NO SIEMPRE CIERTO)
+							 		// Poner el auto frente a una pared a la distancia exacta a la que queremos que doble (Ejemplo: 20 cm).
+									// Medimos con el ADC qué valor entrega el sensor a esa distancia. (Ejemplo: El ADC nos devuelve 1850)
+									// Directamente definimos la constante LIMITE_OBSTACULO en base a ese número analógico
 
 //#define memoriaADC_BUFFER 0x2007C000
 //volatile uint32_t *adc_buffer[TRANSFERSIZE] = (volatile uint32_t *) memoriaADC_BUFFER;	// Buffer en RAM para almacenar las distancias
 
 extern volatile uint32_t adc_buffer[];
 
-
 void configDMA(void);
-void movingAverage(void);
-void configPIN(void);
-void delay_2seg(void);
-
 
 #endif

@@ -10,11 +10,13 @@
 #include "cfg_TIM1.h"
 #include "cfg_UART.h"
 #include "cfg_NVIC.h"
+#include "cfg_METODOS.h"
 
 volatile uint32_t velocidad_duty_cycle = 0;  	// Empieza en 0% (Totalmente frenado)
 volatile uint8_t auto_en_marcha = 0;         	// Flag de estado: 0 = Esperando comando, 1 = Corriendo
-extern volatile uint32_t promedio_distancia; 	// Declarada en el modulo DMA
-extern uint8_t detenerAuto;                 	// Declarada en el modulo UART
+//extern volatile uint32_t promedio_distancia; 	// Declarada en el modulo METODOS
+extern uint8_t detenerAuto;						// Declarada en el modulo UART
+
 
 void esquivarObstaculo(void);
 void avanzarLineaRecta(void);
@@ -43,7 +45,7 @@ int main(void) {
             __WFI();
         }
     //¡ORDEN DE LARGADA RECIBIDA! Habilitamos los Timers y el DMA de forma sincronizada para que el auto empiece a operar
-    comunicacionUART("[AUTO FUNCIONANDO]: Iniciando motores y sensores...\r\n");
+	comunicacionUART("Seleccione la velocidad del auto:\r\n");
 
 	// Habilitar físicamente los temporizadores para que empiecen a correr
     TIM_Enable(LPC_TIM0);           // Arranca el muestreo del ADC cada 100ms

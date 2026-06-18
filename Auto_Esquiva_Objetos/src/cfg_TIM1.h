@@ -6,12 +6,11 @@
 #include "lpc17xx_pinsel.h"
 #include "lpc17xx_gpio.h"
 
-#define matchValueInicial 5999 //30% de 20000
+#define matchValueInicial 30 //30% de 100
+extern volatile uint32_t motores_activos;
 
 void configTIMER1(void);
 
-extern volatile uint32_t velocidad_duty_cycle;
-
-
+//extern volatile uint32_t velocidad_duty_cycle;
 
 #endif

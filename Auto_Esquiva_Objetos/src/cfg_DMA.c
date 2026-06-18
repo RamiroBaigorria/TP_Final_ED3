@@ -1,9 +1,10 @@
 #include "cfg_DMA.h"
 #include "cfg_UART.h"
 #include "cfg_DAC.h"
+#include "cfg_METODOS.h"
 #include "lpc17xx_dac.h"
 
-uint32_t promedio_distancia = 0;
+
 volatile uint32_t adc_buffer[TRANSFERSIZE];
 
 void configDMA(){
@@ -26,30 +27,6 @@ void configDMA(){
 
 		GPDMA_Init();
 		GPDMA_SetupChannel(&cfgDMA);
-}
-
-void movingAverage(){
-
-	 uint32_t suma = 0;
-
-	 for(int i=0; i<TRANSFERSIZE; i++) {
-		 suma += adc_buffer[i];
-	 }
-
-	 promedio_distancia = suma / TRANSFERSIZE;	//Moving Average
-}
-
-void configPIN(){
-	GPIO_SetDir (PORT_1, PIN_MOTOR_IZQ_A | PIN_MOTOR_IZQ_B | PIN_MOTOR_DER_A | PIN_MOTOR_DER_B, GPIO_OUTPUT);	// Configurar los 4 pines de control de motores como salida
-	GPIO_ClearPins (PORT_1, PIN_MOTOR_IZQ_A | PIN_MOTOR_IZQ_B | PIN_MOTOR_DER_A | PIN_MOTOR_DER_B);				// Estado inicial seguro: Todo apagado (Auto frenado)
-	GPIO_SetDir (PORT_0, PIN_LPC, GPIO_OUTPUT);																	// Led que indica error en transferencia
-}
-
-void delay_2seg(void){
-    volatile int32_t i = 20000000; // 'volatile' evita que el compilador borre el bucle por optimización
-    while(i > 0){
-        i--;
-    }
 }
 
 void DMA_IRQHandler(void){

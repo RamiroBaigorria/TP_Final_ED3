@@ -9,6 +9,6 @@
 void configUART(void);
 void comunicacionUART(char *str);
 
-extern volatile uint32_t velocidad_duty_cycle;
+//extern volatile uint32_t velocidad_duty_cycle;
 
 #endif

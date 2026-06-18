@@ -1,5 +1,6 @@
 #include "cfg_UART.h"
 #include "cfg_DMA.h"
+#include "cfg_METODOS.h"
 
 extern volatile uint32_t velocidad_duty_cycle;
 extern volatile uint8_t auto_en_marcha;
@@ -60,8 +61,6 @@ void UART0_IRQHandler(void) {
 
     // Verificar si la interrupción fue legítimamente por recepción de dato (RBR)
     if (UART_GetIntId(UART0) & UART_IIR_INTSTAT_PEND) {
-
-    	comunicacionUART("Seleccione la velocidad del auto:\r\n");
 
     	// Leer el byte recibido limpia la bandera de interrupción automáticamente
     	uint8_t datoRecibido = UART_ReceiveByte(UART0);

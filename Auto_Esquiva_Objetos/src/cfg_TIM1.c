@@ -1,9 +1,11 @@
 #include "cfg_TIM1.h"
 #include "cfg_DMA.h"
 #include "cfg_UART.h"
+#include "cfg_METODOS.h"
 
 extern volatile uint32_t velocidad_duty_cycle;
 extern uint8_t detenerAuto;
+//volatile uint32_t motores_activos = 0;
 
 void configTIMER1(){
 
@@ -57,8 +59,8 @@ void TIMER1_IRQHandler(void){
     		// Si la velocidad es mayor a 0 y no hay orden de parada de emergencia...
             if (velocidad_duty_cycle > 0 && detenerAuto == 0) {
 
-            	// LEER: Miramos el Puerto 1 para saber qué motores quiere la lógica mantener activos
-                motores_activos = GPIO_ReadValue(PORT_1) & (PIN_MOTOR_IZQ_A | PIN_MOTOR_IZQ_B | PIN_MOTOR_DER_A | PIN_MOTOR_DER_B);
+					// LEER: Miramos el Puerto 1 para saber qué motores quiere la lógica mantener activos
+					//motores_activos = GPIO_ReadValue(PORT_1) & (PIN_MOTOR_IZQ_A | PIN_MOTOR_IZQ_B | PIN_MOTOR_DER_A | PIN_MOTOR_DER_B);
 
                 // ENCENDER: Volvemos a poner en '1' (ALTO) esos mismos pines para arrancar el pulso PWM
                 GPIO_SetPins(PORT_1, motores_activos);

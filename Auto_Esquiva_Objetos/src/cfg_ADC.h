@@ -15,14 +15,4 @@
 //----Inicializo funciones----
 void configADC(void);
 
-void avanzarLineaRecta(void);
-void frenarMotores(void);
-void esquivarObstaculo(void);
-
-//----Lectura de la distancia----
-// lectura de 0 a 4095
-// Girar si Lectura >= LIMITE_OBSTACULO
-// Avanzar si Lectura < LIMITE_OBSTACULO
-// uint32_t lecturaADC(void);
-
 #endif
