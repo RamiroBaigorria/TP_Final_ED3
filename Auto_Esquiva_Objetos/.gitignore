@@ -1,6 +1,6 @@
 # Carpetas generadas por MCUXpresso
-Debug/
-.settings/
+Debug
+.settings
 MCU/
 Release/
 build/
