@@ -30,22 +30,25 @@ Nuestro sistema aprovecha las capacidades avanzadas de microcontrolador. Utiliza
 
 ### 🔌 Hardware & Interconexión
 El núcleo del hardware está constituido por el microcontrolador de desarrollo (LPC1769), interactuando de forma directa con las etapas de adquisición (SENSOR analógico de PROXIMIDAD) y la etapa de potencia (controlador de MOTORES puente H).
-🔸Sensor: GP2Y0A21YK0F
-🔸Motor:
-🔸Microcontrolador: LPC1769
-🔸Driver del motor: DRV8833 
-🔸Modulo bluetooth: HC05
 
+## Hardware Utilizado
+- 🔸 Sensor: GP2Y0A21YK0F
+- 🔸 Motor:
+- 🔸 Microcontrolador: LPC1769
+- 🔸 Driver del motor: DRV8833
+- 🔸 Modulo bluetooth: HC05  
 
 ### 💻 Arquitectura de Software (Firmware)
-El diseño del software sigue una filosofía **modular y configurar los periférico de forma autónoma** (solicitado por el profe), donde el bucle principal (`while()`) se encarga de realizar el diagnóstico principal utilizado para tomar decisiones respecto al entorno. Los perifericos utilizados son:
-🔸 ADC
-🔸 DAC
-🔸 DMA
-🔸 TIMER0
-🔸 TIMER1
-🔸 UART
-🔸 Interrupciones de perifericos como ADC, TIMERs, DMA y UART
+El diseño del software sigue una filosofía **modular y configurar los periférico de forma autónoma** (solicitado por el profe), donde el bucle principal (`while()`) se encarga de realizar el diagnóstico principal utilizado para tomar decisiones respecto al entorno.
+
+## Perifericos Utilizados
+-🔸 ADC
+-🔸 DAC
+-🔸 DMA
+-🔸 TIMER0
+-🔸 TIMER1
+-🔸 UART
+-🔸 Interrupciones de perifericos como ADC, TIMERs, DMA y UART
 
 * **Diagrama de Flujo:** El Timer0 dispara el ADC; el ADC avisa al DMA cuando finaliza la conversión; el DMA guarda el dato en memoria; el dato se analiza; la CPU lee la variable de forma asíncrona y recalcula el ciclo de trabajo del PWM en el Timer1 para los motores.
   `![Esquemático Completo](Diseño/Diagrama de Flujo.png)`

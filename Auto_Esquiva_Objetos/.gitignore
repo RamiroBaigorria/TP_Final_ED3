@@ -1,7 +1,9 @@
 # Carpetas generadas por MCUXpresso
 Debug
+.settings/
 .settings
 MCU/
+MCU
 Release/
 build/
 CMSISv1p30_LPC17xx/
