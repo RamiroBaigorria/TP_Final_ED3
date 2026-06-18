@@ -48,7 +48,7 @@ int main(void) {
 	comunicacionUART("Seleccione la velocidad del auto:\r\n");
 
 	// Habilitar físicamente los temporizadores para que empiecen a correr
-    TIM_Enable(LPC_TIM0);           // Arranca el muestreo del ADC cada 100ms
+    TIM_Enable(LPC_TIM0);           // Arranca el muestreo del ADC cada y se llena el adcBuffer[7] cada 50ms
     TIM_Enable(LPC_TIM1);           // Arranca el generador de PWM para las ruedas
     GPDMA_ChannelStart(GPDMA_CH_1); // Habilita el canal del DMA para escuchar al ADC
 

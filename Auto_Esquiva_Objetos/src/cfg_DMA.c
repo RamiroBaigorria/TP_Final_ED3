@@ -10,10 +10,10 @@ volatile uint32_t adc_buffer[TRANSFERSIZE];
 void configDMA(){
 	GPDMA_Channel_CFG_T cfgDMA;
 			cfgDMA.channelNum = CHANNEL1_P2M;
-			cfgDMA.transferSize = TRANSFERSIZE;                  	// Almacenar 10 muestras consecutivas
+			cfgDMA.transferSize = TRANSFERSIZE;         // Almacenar 7 muestras consecutivas
 			cfgDMA.type = GPDMA_P2M;                   	// De Periférico (ADC) a Memoria (RAM)
 			cfgDMA.srcMemAddr = 0;
-			cfgDMA.dstMemAddr = (uint32_t) &adc_buffer;  // Destino: nuestro vector en RAM
+			cfgDMA.dstMemAddr = (uint32_t) &adc_buffer;	// Destino: nuestro vector en RAM
 			cfgDMA.srcConn = GPDMA_ADC;
 			cfgDMA.dstConn = 0;
 			cfgDMA.src.width = GPDMA_HALFWORD;
@@ -39,6 +39,7 @@ void DMA_IRQHandler(void){
 	        DAC_UpdateValue(promedio_distancia); 	// Envio promedio_distancia al DAC para verlo con un tester
 
 	        GPDMA_ClearIntPending(GPDMA_CLR_INTTC, CHANNEL1_P2M);
+	        GPDMA_ChannelStart(GPDMA_CH_1); // Habilita el canal del DMA para escuchar al ADC
 	    }
 
 	if(GPDMA_IntGetStatus(GPDMA_INTERR, CHANNEL1_P2M)){
@@ -46,5 +47,6 @@ void DMA_IRQHandler(void){
 			GPIO_SetPins(PORT_0, PIN_LPC); 			// Hubo error
 
 			GPDMA_ClearIntPending(GPDMA_CLR_INTERR, GPDMA_CH_1);
+			GPDMA_ChannelStart(GPDMA_CH_1); // Habilita el canal del DMA para escuchar al ADC
 		}
 }

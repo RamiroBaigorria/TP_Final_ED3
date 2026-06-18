@@ -63,7 +63,7 @@ void TIMER1_IRQHandler(void){
 					//motores_activos = GPIO_ReadValue(PORT_1) & (PIN_MOTOR_IZQ_A | PIN_MOTOR_IZQ_B | PIN_MOTOR_DER_A | PIN_MOTOR_DER_B);
 
                 // ENCENDER: Volvemos a poner en '1' (ALTO) esos mismos pines para arrancar el pulso PWM
-                GPIO_SetPins(PORT_1, motores_activos);
+                GPIO_SetPins(PORT_2, motores_activos);
             }
 
             // Limpiar la bandera de la alarma Match 0

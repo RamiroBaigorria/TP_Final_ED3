@@ -28,7 +28,7 @@ void configUART(void)	//permite la comunicación serial asincrónica entre el mi
 	PINSEL_ConfigPin(&cfgPIN03);				//UART_PinConfig(UART_RX0_P0_3);
 
     UART_CFG_T cfgUART;
-    	cfgUART.baudRate = 115000;				// Si cambio este valor, lo tengo que cambiar en el programa que use en la PC para el uart (hercules, Putty o Termite)
+    	cfgUART.baudRate = 115200;				// Si cambio este valor, lo tengo que cambiar en el programa que use en la PC para el uart (hercules, Putty o Termite)
 		cfgUART.parity   = UART_PARITY_NONE;	// Sin bit de paridad
     	cfgUART.dataBits = UART_DBITS_8;		// 8 bits de datos
 		cfgUART.stopBits = UART_STOPBIT_1;		// 1 bit de parada
@@ -60,7 +60,7 @@ void comunicacionUART(char *str)
 void UART0_IRQHandler(void) {
 
     // Verificar si la interrupción fue legítimamente por recepción de dato (RBR)
-    if (UART_GetIntId(UART0) & UART_IIR_INTSTAT_PEND) {
+	if ((UART_GetLineStatus(UART0) & UART_LSR_RDR) != 0) {
 
     	// Leer el byte recibido limpia la bandera de interrupción automáticamente
     	uint8_t datoRecibido = UART_ReceiveByte(UART0);

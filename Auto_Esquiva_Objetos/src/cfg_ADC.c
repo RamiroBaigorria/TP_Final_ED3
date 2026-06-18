@@ -2,10 +2,8 @@
 #include "cfg_DMA.h"
 #include "lpc17xx_gpio.h"
 
-
-
 void configADC(void){
-	ADC_Init(SENSOR_ADC_FREC);							//frecuenciaMaximaPosible = 200 [kHz]
+	ADC_Init(SENSOR_ADC_FREC);					//frecuenciaMaximaPosible = 200 [kHz]
 	ADC_PinConfig(SENSOR_ADC_CHANNEL);
 	ADC_PowerUp();
 	ADC_StartCmd(ADC_START_ON_MAT01);
