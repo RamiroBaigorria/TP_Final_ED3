@@ -8,13 +8,12 @@
 ---
 
 ## 🚀 Descripción General del Proyecto
-    Este proyecto consiste en el diseño y desarrollo de un **vehículo autónomo capaz de evadir obstáculos en tiempo real**. El sistema utiliza un enfoque de hardware de alto rendimiento
-    basado en la arquitectura ARM Cortex-M3, procesando de manera asíncrona las lecturas de un sensor de distancia analógico para determinar si la trayectoria del coche es segura mediante
-    algoritmos de control de movimiento directo sobre motores de corriente continua.
+    
+Este proyecto consiste en el diseño y desarrollo de un **vehículo autónomo capaz de evadir obstáculos en tiempo real**. El sistema utiliza un enfoque de hardware de alto rendimiento basado en la arquitectura ARM Cortex-M3, procesando de manera asíncrona las lecturas de un sensor de distancia analógico para determinar si la trayectoria del coche es segura mediante algoritmos de control de movimiento directo sobre motores de corriente continua. 
 
-    A diferencia de las soluciones convencionales de software bloqueante (basadas en retrasos por software o *polling* continuo), este sistema exprime las capacidades avanzadas de
-    microcontrolador. Utiliza temporizadores de hardware para sincronizar el muestreo, automatiza la transferencia de datos mediante accesos directos a memoria (DMA) y controla la potencia
-    del motor por PWM nativo, minimizando drásticamente la carga de procesamiento de la CPU.
+A diferencia de las soluciones convencionales de software bloqueante (basadas en retrasos por software o *polling* continuo), este sistema exprime las capacidades avanzadas de microcontrolador. Utiliza temporizadores de hardware para sincronizar el muestreo, automatiza la transferencia de datos mediante accesos directos a memoria (DMA) y controla la potencia del motor por PWM nativo, minimizando drásticamente la carga de procesamiento de la CPU.
+
+---
 
 ### 🎯 Alcances del Proyecto
 * **El sistema es capaz de:**
