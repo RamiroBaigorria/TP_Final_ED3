@@ -2,8 +2,7 @@
 #include "cfg_DMA.h"
 #include "lpc17xx_gpio.h"
 
-extern void delay_2seg(void);
-volatile uint32_t motores_activos = 0;
+
 
 void configADC(void){
 	ADC_Init(SENSOR_ADC_FREC);							//frecuenciaMaximaPosible = 200 [kHz]

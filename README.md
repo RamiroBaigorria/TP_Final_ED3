@@ -70,6 +70,7 @@ Auto_Esquiva_Objetos/
 │   │   ├── cfg_ADC.h             # Abstracción y registros del convertidor analógico digital
 │   │   ├── cfg_DAC.h             # Configuración del convertidor digital analógico
 │   │   ├── cfg_DMA.h             # Configuración de canales y ráfagas del controlador GPDMA
+|   |   ├── cfg_METODOS.h         # Archivo donde encontramos metodos 
 │   │   ├── cfg_NVIC.h            # Configuración del controlador de interrupciones vectorizadas
 │   │   ├── cfg_TIM0.h            # Base de tiempo de disparo para el muestreo automatizado
 │   │   ├── cfg_TIM1.h            # Configuración del temporizador para salidas PWM de motores
@@ -78,6 +79,7 @@ Auto_Esquiva_Objetos/
 │       ├── cfg_ADC.c
 │       ├── cfg_DAC.c
 │       ├── cfg_DMA.c
+|       ├── cfg_METODOS.c
 │       ├── cfg_NVIC.c
 │       ├── cfg_TIM0.c
 │       ├── cfg_TIM1.c

@@ -5,7 +5,7 @@
 
 extern volatile uint32_t velocidad_duty_cycle;
 extern uint8_t detenerAuto;
-//volatile uint32_t motores_activos = 0;
+volatile uint32_t motores_activos = 0;
 
 void configTIMER1(){
 
@@ -48,7 +48,7 @@ void configTIMER1(){
 void TIMER1_IRQHandler(void){
 
     // Usamos una variable estática para recordar qué pines estaban encendidos antes de apagarlos
-    static uint32_t motores_activos = 0;
+    //static uint32_t motores_activos = 0;
 
     // ------------------- INTERRUPCIÓN MATCH 0 (Inicio del ciclo: 0%) -------------------//
     // El código lee el Puerto 1, ve qué motores estaban seleccionados para moverse y los //
@@ -81,7 +81,7 @@ void TIMER1_IRQHandler(void){
             if (velocidad_duty_cycle <= 100 || detenerAuto == 1) {
 
             	// APAGAR: Ponemos en '0' (BAJO) todos los pines de los motores de golpe
-                GPIO_ClearPins(PORT_1, PIN_MOTOR_IZQ_A | PIN_MOTOR_IZQ_B | PIN_MOTOR_DER_A | PIN_MOTOR_DER_B);
+                GPIO_ClearPins(PORT_2, PIN_MOTOR_IZQ_A | PIN_MOTOR_IZQ_B | PIN_MOTOR_DER_A | PIN_MOTOR_DER_B);
             }
 
             // Limpiar la bandera de la alarma Match 1
