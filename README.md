@@ -48,7 +48,7 @@ El diseño del software sigue una filosofía **modular y configurar los perifér
 -🔸 TIMER0
 -🔸 TIMER1
 -🔸 UART
--🔸 Interrupciones de perifericos como ADC, TIMERs, DMA y UART
+-🔸 Interrupciones de perifericos como ADC, TIMERs, DMA y UART  
 
 * **Diagrama de Flujo:** El Timer0 dispara el ADC; el ADC avisa al DMA cuando finaliza la conversión; el DMA guarda el dato en memoria; el dato se analiza; la CPU lee la variable de forma asíncrona y recalcula el ciclo de trabajo del PWM en el Timer1 para los motores.
   `![Esquemático Completo](Diseño/Diagrama de Flujo.png)`
@@ -56,7 +56,7 @@ El diseño del software sigue una filosofía **modular y configurar los perifér
 ---
 
 ## 📂 Estructura del Repositorio
-El repositorio cuenta con una organización limpia y estandarizada. Los archivos temporales generados localmente por la compilación de MCUXpresso e índices Git locales (`.metadata/`, `Debug/`, `Release/`, etc.) se encuentran excluidos mediante el archivo `.gitignore` para preservar la limpieza del repositorio remoto.
+El repositorio cuenta con una organización limpia y estandarizada. Los archivos temporales generados localmente por la compilación de MCUXpresso e índices Git locales se encuentran excluidos mediante el archivo `.gitignore` para preservar la limpieza del repositorio remoto.
 
 ```text
 Auto_Esquiva_Objetos/
