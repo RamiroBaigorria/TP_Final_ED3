@@ -5,7 +5,7 @@ extern volatile uint32_t velocidad_duty_cycle;
 extern volatile uint8_t auto_en_marcha;
 volatile uint8_t detenerAuto = 0;
 
-void configUART(void)
+void configUART(void)	//permite la comunicación serial asincrónica entre el microcontrolador y otros dispositivos
 {
 
 	PINSEL_CFG_T cfgPIN02;// Configuracion del pin P0.2 como TXD0
@@ -50,8 +50,9 @@ void comunicacionUART(char *str)
 {
     while(*str)
     {
-        UART_Send(UART0, (uint8_t *)str, 1, BLOCKING);
-        str++;
+      //UART_Send(UARTx, buffer , tamaño del buffer, ¿Transmision Bloqueante?);
+        UART_Send(UART0, (uint8_t *)str, 1, BLOCKING);	//  En el modo bloqueante (BLOCKING), la función de envío mantiene al procesador detenido hasta
+        str++;											// que todos los bytes han sido transmitidos completamente por el periférico UART
     }
 }
 

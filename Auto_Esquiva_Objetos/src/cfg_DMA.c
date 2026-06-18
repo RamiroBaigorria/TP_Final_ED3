@@ -42,7 +42,7 @@ void movingAverage(){
 void configPIN(){
 	GPIO_SetDir (PORT_1, PIN_MOTOR_IZQ_A | PIN_MOTOR_IZQ_B | PIN_MOTOR_DER_A | PIN_MOTOR_DER_B, GPIO_OUTPUT);	// Configurar los 4 pines de control de motores como salida
 	GPIO_ClearPins (PORT_1, PIN_MOTOR_IZQ_A | PIN_MOTOR_IZQ_B | PIN_MOTOR_DER_A | PIN_MOTOR_DER_B);				// Estado inicial seguro: Todo apagado (Auto frenado)
-
+	GPIO_SetDir (PORT_0, PIN_LPC, GPIO_OUTPUT);																	// Led que indica error en transferencia
 }
 
 void delay_2seg(void){
@@ -56,17 +56,17 @@ void DMA_IRQHandler(void){
 	//static uint8_t estado_anterior = 0; // 0 = Libre, 1 = Obstáculo
 
 	if (GPDMA_IntGetStatus(GPDMA_INTTC, CHANNEL1_P2M)) {
-	        GPIO_SetPins(PORT_0, PIN_LPC); 			// Test de actividad física
 
-	        movingAverage();               			// Procesa el filtro digital rápidamente
-	        DAC_UpdateValue(promedio_distancia); 	// Espejo analógico de la distancia
+	        GPIO_ClearPins(PORT_0, PIN_LPC); 		// No hubo error
+	        movingAverage();               			// Metodo que muestrea las conversiones del ADC
+	        DAC_UpdateValue(promedio_distancia); 	// Envio promedio_distancia al DAC para verlo con un tester
 
 	        GPDMA_ClearIntPending(GPDMA_CLR_INTTC, CHANNEL1_P2M);
 	    }
 
 	if(GPDMA_IntGetStatus(GPDMA_INTERR, CHANNEL1_P2M)){
 
-			GPIO_SetPins(PORT_0, PIN_LPC); //hubo error
+			GPIO_SetPins(PORT_0, PIN_LPC); 			// Hubo error
 
 			GPDMA_ClearIntPending(GPDMA_CLR_INTERR, GPDMA_CH_1);
 		}

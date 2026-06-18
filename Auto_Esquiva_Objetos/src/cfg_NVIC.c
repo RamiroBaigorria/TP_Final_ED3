@@ -7,7 +7,7 @@ void configNVIC(){
 	NVIC_SetPriority(DMA_IRQn, 0);
 
 	NVIC_EnableIRQ(TIMER1_IRQn);
-	NVIC_ClearPendingIRQ(TIMER1_IRQn); 	//PROVISORIO: en caso de que usemos el START_NOW
+	NVIC_ClearPendingIRQ(TIMER1_IRQn);
 	NVIC_SetPriority(TIMER1_IRQn, 1);
 
 	/*NVIC_EnableIRQ(TIMER0_IRQn);

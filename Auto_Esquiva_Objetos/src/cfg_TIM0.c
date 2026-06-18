@@ -15,16 +15,6 @@ void configTIMER0(void){
 
 	TIM_InitTimer(LPC_TIM0, &cfgTIM0);
 	TIM_ConfigMatch(LPC_TIM0, &cfgMATCH);
-	TIM_Enable(LPC_TIM0);				// ¿Hace falta?
 
 }
 
-/*void TIMER0_IRQHandler(void){
-	if(TIM_GetIntStatus(LPC_TIM0, TIM_MR0_INT) == 1){
-
-		TIM_ClearIntPending(LPC_TIM0, TIM_MR0_INT);
-		lecturaADC();
-
-	}
-}
-*/

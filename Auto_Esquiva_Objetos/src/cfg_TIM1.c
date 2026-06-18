@@ -19,6 +19,7 @@ void configTIMER1(){
 	cfgMATCH0.resetEn 		= ENABLE;		// Resetea el timer para empezar de nuevo
 	cfgMATCH0.extOpt 		= 0;
 	cfgMATCH0.matchValue 	= 100;			// Periodo total = 100 * 100us = 10ms (Va a ser el doble que el periodo del TIM0)
+											// Frecuencia = 1 / Periodo ==> Frecuencia = 1 / 0,01 = 100Hz
 
 	// MATCH 1: Define el Duty Cycle (Ancho de pulso)
 	TIM_MATCHCFG_T cfgMATCH1;
@@ -32,7 +33,7 @@ void configTIMER1(){
 	TIM_InitTimer(LPC_TIM1, &cfgTIM1);
 	TIM_ConfigMatch(LPC_TIM1, &cfgMATCH0);
 	TIM_ConfigMatch(LPC_TIM1, &cfgMATCH1);
-	TIM_Enable(LPC_TIM1);							// ¿Hace falta?
+
 }
 
 	// -------------------------------------------------------------------------------------//
@@ -48,8 +49,8 @@ void TIMER1_IRQHandler(void){
     static uint32_t motores_activos = 0;
 
     // ------------------- INTERRUPCIÓN MATCH 0 (Inicio del ciclo: 0%) -------------------//
-    // El código lee el Puerto 1, ve qué motores estaban seleccionados para moverse y los
-    // enciende (pone en ALTO / 3.3V). Los motores empiezan a recibir energía.
+    // El código lee el Puerto 1, ve qué motores estaban seleccionados para moverse y los //
+    // enciende (pone en ALTO / 3.3V). Los motores empiezan a recibir energía.			  //
     // -----------------------------------------------------------------------------------//
     if(TIM_GetIntStatus(LPC_TIM1, TIM_MR0_INT) == 1){
 
@@ -68,14 +69,14 @@ void TIMER1_IRQHandler(void){
         }
 
     // ---------------------------- INTERRUPCIÓN MATCH 1 (Fin del Duty Cycle) ----------------------------//
-    // El Timer sigue contando y llega al valor configurado en "velocidad_duty_cycle". Se dispara la
-    // interrupción TIM_MR1_INT. El código apaga absolutamente todos los pines de los motores (los pone
-    // en BAJO / 0V). El motor se queda sin energía por el resto del ciclo.
+    // El Timer sigue contando y llega al valor configurado en "velocidad_duty_cycle". Se dispara la	  //
+    // interrupción TIM_MR1_INT. El código apaga absolutamente todos los pines de los motores (los pone   //
+    // en BAJO / 0V). El motor se queda sin energía por el resto del ciclo.								  //
     // ---------------------------------------------------------------------------------------------------//
     if(TIM_GetIntStatus(LPC_TIM1, TIM_MR1_INT) == 1){
 
     		// Si la velocidad es menor al 100% o el auto se debe detener, cortamos el pulso
-            if (velocidad_duty_cycle < 100 || detenerAuto == 1) {
+            if (velocidad_duty_cycle <= 100 || detenerAuto == 1) {
 
             	// APAGAR: Ponemos en '0' (BAJO) todos los pines de los motores de golpe
                 GPIO_ClearPins(PORT_1, PIN_MOTOR_IZQ_A | PIN_MOTOR_IZQ_B | PIN_MOTOR_DER_A | PIN_MOTOR_DER_B);
