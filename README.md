@@ -54,7 +54,7 @@ El núcleo del hardware está constituido por el microcontrolador de desarrollo 
 * **Esquematico del Circuito:**   `![Esquemático Completo](Auto_Esquiva_Objetos/Diseño/Esquematico.png)`
 
 ### 💻 Arquitectura de Software (Firmware)
-El diseño del software sigue una filosofía **modular y configurar los periférico de forma autónoma** (solicitado por el profe), donde el bucle principal (`while()`) se encarga de realizar el diagnóstico principal utilizado para tomar decisiones respecto al entorno.
+El diseño del software sigue una filosofía **modular y configurar los periférico de forma autónoma**, donde el bucle principal (`while()`) se encarga de realizar el diagnóstico principal utilizado para tomar decisiones respecto al entorno.
 
 ## Perifericos Utilizados
 - 🔸 ADC
@@ -89,13 +89,56 @@ El diseño del software sigue una filosofía **modular y configurar los perifér
     - DMA para transferencia hacia un arreglo, que calcula promedio de muestras y carga el DAC.
 
  * **ETAPA 2:** _Métodos:_
-    - valuacion del promedio de distancia de las muestras.
-    - Si el limite es excedido, se cambia al estado de giro.
-    - Si el limite no se excede, el vehiculo sigue avanzando.
-    
+    - Valuacion del promedio de distancia de las muestras:
+      - Si el limite es excedido, se cambia al estado de giro.
+      - Si el limite no se excede, el vehiculo sigue avanzando.
+
  * **ETAPA 3:** _Módulo UART:_
     - IDEALMENTE: Carga el valor de promedio transformado en [cm] y lo muestra por el terminal serial.
-    - REALIDAD: Codigo aparte: Se lee el registro de entrada de datos en el terminal, y devuelve el dato ingresado aumentado en una unidad respecto a su valor asignado en la tabla ASCII.
+    - REALIDAD: Se lee el registro de entrada de datos en el terminal, y devuelve el dato ingresado aumentado en una unidad respecto a su valor asignado en la tabla ASCII.
+
+---
+### 📊 Ensayos, Pruebas y Resultados (Común)
+
+*Pruebas Funcionales Realizadas:*
+
+- ETAPA 1:
+    Verifiacion del correcto muestro del sensor infrarrojo:
+      -> El sensor tiene un comportamiento inversamente proporcional a la distancia medida (cuanto máscerca del auto, mayor la tension), y su salida devuelve una Vref = 3.3V.
+      -> Como la máxima resolución del adc es de 12bits (0 - 4095), se platea una ecuación de relación: V_mV = (prom_muestras * 3300) / 4095, por lo que aplicando esto se pueden obtener unos valores de calibracion base: prom_muestras ~ 2500 -> 10cm, 
+                                                                                    prom_muestras ~ 1200 -> 20cm, ...
+      -> usando una aproximación hiperbólica: distancia_cm = K/prom_muestras, donde K es un parámetro que se ajusta probando empiricamente. En nuestro caso le asignamos K=24000.
+
+    Prueba de perifericos TIMER0, ADC, DMA, Y DAC:
+      -> Se realizaron las conexiones y códigos correspondientes, procediendo a testear con un osciloscopio que el dac devuelva el valor en tensión de la distancia medida por el sensor infrarrojo. Posteriormente se realizó el mismo testeo pero del promedio de un buffer de 7 muestras del adc, buscando con esto reducir los picos de tension y poder tener una medición de la distancia un poco mas precisa y parecida a la realidad. 
+
+    Modularizacion del bloque TIMER0-ADC-DMA-DAC, uasndo un arreglo que calcula el promedio de 7 muestras:
+
+- ETAPA 2: 
+    Prueba de motores con controlador y sin controlador:
+      -> Inicialmente se procedió a probar el funcionamiento de los motoes con un driver designado para ellos, el drv8833, lo cual trajo varios problemas y no se encontró progreso, ya sea por mala conexion, desconocimiento de particularidades del componente o simplemente porque el driver estaba fallado (se desconoce el motido de que no funcionara). 
+      -> Debido a esto, reeemplazamos dicho componente por transistores NPN que abastescan a cada motor por separado a través de una señal enviada a estos por GPIO, del cual se lograron buenos resultados y permitió poder avanzar y hacer funcionar el proyecto. 
+    
+    Añadido de Leds para identificar estado de rotacion.
+   
+    Armado de módulo PWM-TIMER1-SENSOR-ESTADO, que determina el avance o giro del vehiculo.
+
+- ESTAPA 3: Módulo UART
+    Prueba de UART0 (fallida) -> no se reconoce el modulo bluetooth ni la conexion directa por UART
+
+    Prueba de UART0 (fallida) -> se reconoce el modulo bluetooth pero no se logró realizar ninguna accion por la terminal. La conexion directa por UART tampoco es reconocida. 
+
+    Prueba de UART1:
+     -> Por pedido del profesor, se probó implementar un código simple para verificar que el problema no sea el UART sino alguna lógica del código o que el módulo bluetooth simplemente no era reconocido por el programa. Este código resultó exitoso, por lo que se confirmó la teroría y se cree que hayan conflictos en la lógica del código que no se lograron identificar (o mala implementacion del módulo). 
+
+*Evidencia Fotográfica y Gráficos:*
+
+  `![Diagrama de Flujo](Auto_Esquiva_Objetos/Diseño/AutoAndando.mp4)`
+  `![Diagrama de Flujo](Auto_Esquiva_Objetos/Diseño/Osciloscopio.mp4)`
+  `![Diagrama de Flujo](Auto_Esquiva_Objetos/Diseño/UART.png)`
+  `![Diagrama de Flujo](Auto_Esquiva_Objetos/Diseño/Auto.png)`
+  `![Diagrama de Flujo](Auto_Esquiva_Objetos/Diseño/Auto2.png)`
+  `![Diagrama de Flujo](Auto_Esquiva_Objetos/Diseño/Auto3.png)`
 
 ---
 
