@@ -93,6 +93,6 @@ Auto_Esquiva_Objetos/
 |   └── Diagrama de Bloques.png
 ├── src/                            
 |   ├── Auto_Esquiva_Objetos.c      # Código fuente del proyecto en MCUXpresso IDE
-|   └── A_Trabajo_UART.c
+|   └── A_Trabajo_UART.c            # Código correspondiente al modulo UART 
 ├── docs/                      
 └── README.md                       # Este archivo de presentación y documentación del proyecto
