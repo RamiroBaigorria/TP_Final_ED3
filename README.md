@@ -83,17 +83,19 @@ El diseño del software sigue una filosofía **modular y configurar los perifér
 ---
 ## 🔄 Proceso de Integración y Desarrollo (Común)
 
- * **ETAPA 1:** _Configuraciones_
-    Inicializacion de perifericos.
-    Habilitacion del ADC y TIMER0 para muestreo.
-    DMA para transferencia hacia un arreglo, que calcula promedio de muestras y carga el DAC.
- * **ETAPA 2:** _Métodos_
-    Evaluacion del promedio de distancia de las muestras.
-    Si el limite es excedido, se cambia al estado de giro.
-    Si el limite no se excede, el vehiculo sigue avanzando.
- * **ETAPA 3:** _Módulo UART_
-    IDEALMENTE: Carga el valor de promedio transformado en [cm] y lo muestra por el terminal serial.
-    REALIDAD: Codigo aparte: Se lee el registro de entrada de datos en el terminal, y devuelve el dato ingresado aumentado en una unidad respecto a su valor asignado en la tabla ASCII.
+ * **ETAPA 1:** _Configuraciones:_
+    - Inicializacion de perifericos.
+    - Habilitacion del ADC y TIMER0 para muestreo.
+    - DMA para transferencia hacia un arreglo, que calcula promedio de muestras y carga el DAC.
+
+ * **ETAPA 2:** _Métodos:_
+    - valuacion del promedio de distancia de las muestras.
+    - Si el limite es excedido, se cambia al estado de giro.
+    - Si el limite no se excede, el vehiculo sigue avanzando.
+    
+ * **ETAPA 3:** _Módulo UART:_
+    - IDEALMENTE: Carga el valor de promedio transformado en [cm] y lo muestra por el terminal serial.
+    - REALIDAD: Codigo aparte: Se lee el registro de entrada de datos en el terminal, y devuelve el dato ingresado aumentado en una unidad respecto a su valor asignado en la tabla ASCII.
 
 ---
 
