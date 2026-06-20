@@ -39,7 +39,7 @@ Nuestro sistema aprovecha las capacidades avanzadas de microcontrolador. Utiliza
 
 ## 📐 Arquitectura del Sistema: Hardware y Software
 
-### 🔌 Hardware & Interconexión
+### 🔌 Arquitectura de Hardware
 El núcleo del hardware está constituido por el microcontrolador de desarrollo (LPC1769), interactuando de forma directa con las etapas de adquisición (SENSOR analógico de PROXIMIDAD) y la etapa de potencia (controlador de MOTORES).
 
 ## Hardware Utilizado
@@ -79,6 +79,21 @@ El diseño del software sigue una filosofía **modular y configurar los perifér
 
 * **Diagrama de Flujo:** El Timer0 dispara el ADC; el ADC avisa al DMA cuando finaliza la conversión; el DMA guarda el dato en memoria; el dato se analiza; la CPU lee la variable de forma asíncrona y, segun la desicion tomada, habilita o corta la señal PWM del Timer1 a los motores.
   `![Diagrama de Flujo](Auto_Esquiva_Objetos/Diseño/Diagrama de Flujo.png)`
+
+---
+## 🔄 Proceso de Integración y Desarrollo (Común)
+
+ * **ETAPA 1:** _Configuraciones_
+    Inicializacion de perifericos.
+    Habilitacion del ADC y TIMER0 para muestreo.
+    DMA para transferencia hacia un arreglo, que calcula promedio de muestras y carga el DAC.
+ * **ETAPA 2:** _Métodos_
+    Evaluacion del promedio de distancia de las muestras.
+    Si el limite es excedido, se cambia al estado de giro.
+    Si el limite no se excede, el vehiculo sigue avanzando.
+ * **ETAPA 3:** _Módulo UART_
+    IDEALMENTE: Carga el valor de promedio transformado en [cm] y lo muestra por el terminal serial.
+    REALIDAD: Codigo aparte: Se lee el registro de entrada de datos en el terminal, y devuelve el dato ingresado aumentado en una unidad respecto a su valor asignado en la tabla ASCII.
 
 ---
 
