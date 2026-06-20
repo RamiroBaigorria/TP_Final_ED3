@@ -7,7 +7,7 @@
 > - Cravero, Lorenzo
 > - Gonzalez, Tobias
 >
-> **Profesor:** Blasco
+> **Profesor:** Blasco Marcos
 
 ---
 
