@@ -32,7 +32,7 @@ Nuestro sistema aprovecha las capacidades avanzadas de microcontrolador. Utiliza
     
 ---
 
-##⏩ Posibles Etapas Siguientes:
+### ⏩ Posibles Etapas Siguientes:
  * Desarrollar una comunicacion estable via UART/Bluetooth/Wifi para setear distintas especificaciones y funciones al auto (control, de velocidad, freno y giro autónomo cuando se lo requiera, etc.)
  * Mejorar el nivel de deteccion y respuesta ante obstaculos en el camino, pudiendo evadir com más precision y eliminar los limitantes o puntos débiles del proyecto actual
  * Agregar nuevas funcionalidades a la estructura del auto, como encendido y apagado de faroles, control de carga(poder cargarle cosas en una "caja o baúl" y que devuelva el peso total  y compararlo con el soportado, etc) pudienco hacerlo más vistoso y/o util según lo que se implemente
@@ -64,7 +64,18 @@ El diseño del software sigue una filosofía **modular y configurar los perifér
 - 🔸 TIMER1 
 - 🔸 UART
 - 🔸 Interrupciones de perifericos como ADC, TIMERs, DMA y UART
-- 
+
+
+| Pin   |  Utilidad       | Funcion | Periferico | Pinsel   |
+|:------|:----------------|:--------|:-----------|:---------|
+| P0.4  | Prender Motor 1 | GPIO    | GPIO0      | 00       |    
+| P0.5  | Prender Motor 2 | GPIO    | GPIO0      | 00       |
+| P0.4  | Prender Led 1   | GPIO    | GPIO0      | 00       |    
+| P0.5  | Prender Led 2   | GPIO    | GPIO0      | 00       |        
+| P0.23 | Conversion ADC  | AD00    | ADC        | 01       |
+| P0.26 | Valor promediado| AOUT    | DAC        | 10       |
+| P0.15 | Transmision UART| TXD1    | UART1      | 01       |
+| P0.16 | Transmision UART| RXD1    | UART1      | 01       |
 
 * **Diagrama de Flujo:** El Timer0 dispara el ADC; el ADC avisa al DMA cuando finaliza la conversión; el DMA guarda el dato en memoria; el dato se analiza; la CPU lee la variable de forma asíncrona y, segun la desicion tomada, habilita o corta la señal PWM del Timer1 a los motores.
   `![Diagrama de Flujo](Auto_Esquiva_Objetos/Diseño/Diagrama de Flujo.png)`
