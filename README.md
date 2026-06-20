@@ -27,7 +27,7 @@ Nuestro sistema aprovecha las capacidades avanzadas de microcontrolador. Utiliza
   * Ejecutar una lógica de "evasión" en tiempo real: si la medición supera el umbral crítico (`Lectura >= LIMITE_OBSTACULO`), el vehículo frena y gira; de lo contrario (`Lectura < LIMITE_OBSTACULO`), mantiene su marcha hacia adelante.
   * Conectividad inalámbrica (módulos Bluetooth) para control remoto o monitorización a distancia.
 
- * **El sistema no es capaz de:**
+* **El sistema no es capaz de:**
   * Poder sincronizar una comunicación via UART a traves de una terminal
     
 ---
@@ -150,6 +150,7 @@ El diseño del software sigue una filosofía **modular y configurar los perifér
 
   * `![Diagrama de Flujo](Auto_Esquiva_Objetos/Diseño/AutoAndando.gif)`
   * `![Diagrama de Flujo](Auto_Esquiva_Objetos/Diseño/Osciloscopio.gif)`
+  * `![Diagrama de Flujo](Auto_Esquiva_Objetos/Diseño/UART.gif)`
   * `![Diagrama de Flujo](Auto_Esquiva_Objetos/Diseño/UART.png)`
   * `![Diagrama de Flujo](Auto_Esquiva_Objetos/Diseño/Auto.png)`
   * `![Diagrama de Flujo](Auto_Esquiva_Objetos/Diseño/Auto2.png)`
