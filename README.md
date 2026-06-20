@@ -166,10 +166,10 @@ Auto_Esquiva_Objetos/
 |   ├── Diagrama de Flujo.png
 |   ├── Esquematico.png
 |   ├── Diagrama de Bloques.png
-|   ├── UART.png
 |   ├── Auto.png
 |   ├── Auto2.png
 |   ├── Auto3.png
+|   ├── UART.gif
 |   ├── AutoAndando.gif
 |   └── Osciloscopio.gif
 ├── src/                            
