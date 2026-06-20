@@ -87,26 +87,12 @@ El repositorio cuenta con una organización limpia y estandarizada. Los archivos
 
 ```text
 Auto_Esquiva_Objetos/
-├── src/                          # Código fuente del proyecto en MCUXpresso IDE
-|   ├── Auto_Esquiva_Objetos.c    # Lazo principal y lógica de decisión del auto autónomo
-│   ├── inc/                      # Archivos de cabecera (.h) para la configuración modular
-│   │   ├── cfg_ADC.h             # Abstracción y registros del convertidor analógico digital
-│   │   ├── cfg_DAC.h             # Configuración del convertidor digital analógico
-│   │   ├── cfg_DMA.h             # Configuración de canales y ráfagas del controlador GPDMA
-|   |   ├── cfg_METODOS.h         # Archivo donde encontramos metodos 
-│   │   ├── cfg_NVIC.h            # Configuración del controlador de interrupciones vectorizadas
-│   │   ├── cfg_TIM0.h            # Base de tiempo de disparo para el muestreo automatizado
-│   │   ├── cfg_TIM1.h            # Configuración del temporizador para salidas PWM de motores
-│   │   └── cfg_UART.h            # Parámetros del transceptor serie para telemetría
-│   └── src/                      # Archivos de implementación (.c)
-│       ├── cfg_ADC.c
-│       ├── cfg_DAC.c
-│       ├── cfg_DMA.c
-|       ├── cfg_METODOS.c
-│       ├── cfg_NVIC.c
-│       ├── cfg_TIM0.c
-│       ├── cfg_TIM1.c
-│       ├── cfg_UART.c 
-├── hardware/                     # Archivos de diseño general del proyecto (Diagrama de flujo)
+├── diseños/
+|   ├── Diagrama de Flujo.png
+|   ├── Esquematico.png
+|   └── Diagrama de Bloques.png
+├── src/                            
+|   ├── Auto_Esquiva_Objetos.c      # Código fuente del proyecto en MCUXpresso IDE
+|   └── A_Trabajo_UART.c
 ├── docs/                      
-└── README.md                     # Este archivo de presentación y documentación del proyecto
+└── README.md                       # Este archivo de presentación y documentación del proyecto
