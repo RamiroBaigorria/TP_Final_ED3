@@ -79,8 +79,22 @@ El diseño del software sigue una filosofía **modular y configurar los perifér
 
 * **Diagrama de Flujo:** El Timer0 dispara el ADC; el ADC avisa al DMA cuando finaliza la conversión; el DMA guarda el dato en memoria; el dato se analiza; la CPU lee la variable de forma asíncrona y, segun la desicion tomada, habilita o corta la señal PWM del Timer1 a los motores.
   `![Diagrama de Flujo](Auto_Esquiva_Objetos/Diseño/Diagrama de Flujo.png)`
+---
+
+⚡ Especificaciones Eléctricas, Alimentación y Entorno (Específico por Asignatura)
+
+🔌 Parámetros de Alimentación y Consumo:
+
+  * **Tensión de operación del sistema:** [6V/5V] -> utilizamos un regulador de tensión para bajar de 6V a 5V.
+  * **Método de alimentación:** fuente experna proveniente de un portapilas de 4 pilas AA (1,5V).
+  * **Consumo estimado o medido -> En modo activo (motores funcionando, lpc1769 y sensor infrarrojo funcionando) :** 350mA
+  * **IDE y SDK:** MCUXpresso IDE v11.8 con LPCOpen v2.10.
+  * **Microcontrolador Principal:** NXP LPC1769.
+  * **Bibliotecas de Terceros y Versiones:** Drivers de Trujillo y Drivers del fabricante. 
+  * **Periféricos Avanzados Utilizados:** NVIC, DMA, SysTick, DAC, ADC, UART, TIMER.
 
 ---
+
 ## 🔄 Proceso de Integración y Desarrollo (Común)
 
  * **ETAPA 1:** _Configuraciones:_
@@ -98,6 +112,7 @@ El diseño del software sigue una filosofía **modular y configurar los perifér
     - REALIDAD: Se lee el registro de entrada de datos en el terminal, y devuelve el dato ingresado aumentado en una unidad respecto a su valor asignado en la tabla ASCII.
 
 ---
+
 ### 📊 Ensayos, Pruebas y Resultados (Común)
 
 *Pruebas Funcionales Realizadas:*
@@ -133,8 +148,8 @@ El diseño del software sigue una filosofía **modular y configurar los perifér
 
 *Evidencia Fotográfica y Gráficos:*
 
-  * `![Diagrama de Flujo](Auto_Esquiva_Objetos/Diseño/AutoAndando.mp4)`
-  * `![Diagrama de Flujo](Auto_Esquiva_Objetos/Diseño/Osciloscopio.mp4)`
+  * `![Diagrama de Flujo](Auto_Esquiva_Objetos/Diseño/AutoAndando.gif)`
+  * `![Diagrama de Flujo](Auto_Esquiva_Objetos/Diseño/Osciloscopio.gif)`
   * `![Diagrama de Flujo](Auto_Esquiva_Objetos/Diseño/UART.png)`
   * `![Diagrama de Flujo](Auto_Esquiva_Objetos/Diseño/Auto.png)`
   * `![Diagrama de Flujo](Auto_Esquiva_Objetos/Diseño/Auto2.png)`
@@ -150,7 +165,13 @@ Auto_Esquiva_Objetos/
 ├── diseños/
 |   ├── Diagrama de Flujo.png
 |   ├── Esquematico.png
-|   └── Diagrama de Bloques.png
+|   ├── Diagrama de Bloques.png
+|   ├── UART.png
+|   ├── Auto.png
+|   ├── Auto2.png
+|   ├── Auto3.png
+|   ├── AutoAndando.gif
+|   └── Osciloscopio.gif
 ├── src/                            
 |   ├── Auto_Esquiva_Objetos.c      # Código fuente del proyecto en MCUXpresso IDE
 |   └── A_Trabajo_UART.c            # Código correspondiente al modulo UART 
